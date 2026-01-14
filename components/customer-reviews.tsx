@@ -5,27 +5,33 @@ import { Star } from "lucide-react"
 
 const reviews = [
   {
-    name: "Anjali Rao",
+    name: "Nag Ankesh",
     review:
-      "The food at Aathidyam is absolutely delicious! The Chicken Pulao was flavorful and perfectly cooked.",
+      "Food quality and taste is so good and well behaved Staff.",
     rating: 5,
   },
   {
-    name: "Rahul Verma",
+    name: "Digvijay Reddy",
     review:
-      "Authentic South Indian taste with a beautiful ambience. Highly recommend the Mutton Pulao!",
+      "I had a wonderful experience at Aathidyam Restaurant.The Service was warm and attentive,and the staff made sure everything was taken care of.The food was delicious,fresh and full of flavor.",
     rating: 5,
   },
   {
-    name: "Sneha Kulkarni",
+    name: "Yash Vaidya",
     review:
-      "Loved the hospitality and the food quality. Prawns Pulao was outstanding!",
+      "It Was good place with good food as well as lovely staff,Must visit",
     rating: 4,
   },
   {
-    name: "Arjun Patil",
+    name: "Aishu Vandu",
     review:
-      "A perfect place for family dining. Fresh ingredients and excellent service.",
+      "Mughlai biryani  was absolutely delicious!It was bursting with flavor and cooked to perfection.We loved the ambiance and the food.",
+    rating: 5,
+  },
+  {
+    name: "Leela kumari",
+    review:
+      "The service was very good the food was very delicious enjoyed dinning here.",
     rating: 5,
   },
 ]
