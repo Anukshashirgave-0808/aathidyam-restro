@@ -21,30 +21,30 @@ const menuItems = [
   { id: 12, name: "Chicken Fry Biryani", description: "Crispy fried chicken layered with fragrant rice", category: "Biryani", image: "/chicken-fry-biryani.jpg" },
   { id: 13, name: "Mutton Biryani", description: "Tender mutton pieces with aromatic basmati rice", category: "Biryani", image: "/flavorful-mutton-biryani.png" },
   { id: 14, name: "Prawn Biryani", description: "Succulent prawns with fragrant rice and spices", category: "Biryani", image: "/prawn-biryani.jpg" },
-  { id: 15, name: "Fish Biryani", description: "Flaky fish with aromatic rice and traditional flavors", category: "Biryani", image: "/placeholder.svg" },
+  { id: 15, name: "Fish Biryani", description: "Flaky fish with aromatic rice and traditional flavors", category: "Biryani", image: "/fish-biryani.jpg" },
 
   // Noodles
-  { id: 16, name: "Veg Noodles", description: "Stir-fried noodles with fresh vegetables", category: "Noodles", image: "/placeholder.svg" },
-  { id: 17, name: "Egg Noodles", description: "Noodles with scrambled eggs and aromatic spices", category: "Noodles", image: "/placeholder.svg" },
-  { id: 18, name: "Chicken Noodles", description: "Tender chicken with perfectly stir-fried noodles", category: "Noodles", image: "/placeholder.svg" },
-  { id: 19, name: "Paneer Noodles", description: "Soft paneer chunks stir-fried with noodles", category: "Noodles", image: "/placeholder.svg" },
-  { id: 20, name: "Schezwan Noodles", description: "Spicy noodles with Schezwan sauce and vegetables", category: "Noodles", image: "/placeholder.svg" },
-  { id: 21, name: "Manchurian Noodles", description: "Noodles with crispy manchurian balls", category: "Noodles", image: "/placeholder.svg" },
+  { id: 16, name: "Veg Noodles", description: "Stir-fried noodles with fresh vegetables", category: "Noodles", image: "/veg-noodles.jpg" },
+  { id: 17, name: "Egg Noodles", description: "Noodles with scrambled eggs and aromatic spices", category: "Noodles", image: "/egg-noodles.jpg" },
+  { id: 18, name: "Chicken Noodles", description: "Tender chicken with perfectly stir-fried noodles", category: "Noodles", image: "/Chicken-Noodles.jpg" },
+  { id: 19, name: "Paneer Noodles", description: "Soft paneer chunks stir-fried with noodles", category: "Noodles", image: "/panner-noodles.jfif" },
+  { id: 20, name: "Schezwan Noodles", description: "Spicy noodles with Schezwan sauce and vegetables", category: "Noodles", image: "/sezwan-noodles.jfif" },
+  { id: 21, name: "Manchurian Noodles", description: "Noodles with crispy manchurian balls", category: "Noodles", image: "/manchurian-noodles.jpg" },
 
   // Starters
-  { id: 22, name: "Paneer 65", description: "Crispy fried paneer with aromatic spices", category: "Starters", image: "/placeholder.svg" },
-  { id: 23, name: "Chicken 65", description: "Crispy fried chicken bites with spices", category: "Starters", image: "/placeholder.svg" },
-  { id: 24, name: "Gobi Manchurian", description: "Crispy cauliflower in tangy Manchurian sauce", category: "Starters", image: "/placeholder.svg" },
-  { id: 25, name: "Veg Manchurian", description: "Mixed vegetables in sweet Manchurian sauce", category: "Starters", image: "/placeholder.svg" },
-  { id: 26, name: "Chilli Chicken", description: "Tender chicken with spicy chilli sauce", category: "Starters", image: "/placeholder.svg" },
-  { id: 27, name: "Chicken Lollipop", description: "Marinated chicken drumettes, crispy and delicious", category: "Starters", image: "/placeholder.svg" },
-  { id: 28, name: "Prawn Manchurian", description: "Succulent prawns in tangy Manchurian sauce", category: "Starters", image: "/placeholder.svg" },
-  { id: 29, name: "Fish Fingers", description: "Crispy battered fish fingers", category: "Starters", image: "/placeholder.svg" },
+  { id: 22, name: "Paneer 65", description: "Crispy fried paneer with aromatic spices", category: "Starters", image: "/paneer-65-crispy.jpg" },
+  { id: 23, name: "Chicken 65", description: "Crispy fried chicken bites with spices", category: "Starters", image: "/chicken65.jpg" },
+  { id: 24, name: "Gobi Manchurian", description: "Crispy cauliflower in tangy Manchurian sauce", category: "Starters", image: "/gobimanchurian.jpg" },
+  { id: 25, name: "Veg Manchurian", description: "Mixed vegetables in sweet Manchurian sauce", category: "Starters", image: "/veg-manchurian.jpg" },
+  { id: 26, name: "Chilli Chicken", description: "Tender chicken with spicy chilli sauce", category: "Starters", image: "/chilli-chicken.jpg" },
+  { id: 27, name: "Chicken Lollipop", description: "Marinated chicken drumettes, crispy and delicious", category: "Starters", image: "/chicken-lolipop.JPG" },
+  { id: 28, name: "Prawn Manchurian", description: "Succulent prawns in tangy Manchurian sauce", category: "Starters", image: "/prawn-manchurian.jpg" },
+  { id: 29, name: "Fish Fingers", description: "Crispy battered fish fingers", category: "Starters", image: "/fish-finger.jpg" },
 
   // Soups
-  { id: 30, name: "Tomato Soup", description: "Creamy tomato soup with herbs", category: "Soups", image: "/placeholder.svg" },
+  { id: 30, name: "Tomato Soup", description: "Creamy tomato soup with herbs", category: "Soups", image: "/tomato-soup.jpg" },
   { id: 31, name: "Hot & Sour Soup", description: "Tangy and spicy Chinese-style soup", category: "Soups", image: "/hot-and-sour-soup.png" },
-  { id: 32, name: "Sweet Corn Soup", description: "Creamy soup with sweet corn kernels", category: "Soups", image: "/placeholder.svg" },
+  { id: 32, name: "Sweet Corn Soup", description: "Creamy soup with sweet corn kernels", category: "Soups", image: "/sweet-corn-soup.jpg" },
   { id: 33, name: "Manchow Soup", description: "Crispy noodles in tangy vegetable soup", category: "Soups", image: "/manchow-soup.jpg" },
 
   // Curries

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
 import { Menu, X, Search, ShoppingCart, Phone, Clock, Mail } from "lucide-react"
 
@@ -12,11 +13,10 @@ export default function Header({ isScrolled }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
 
-  // UPDATE: Use actual page routes
   const navItems = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Menu", href: "/menu" }, 
+    { label: "Menu", href: "/menu" },
     { label: "Services", href: "/services" },
     { label: "Contact Us", href: "/contact" },
   ]
@@ -25,20 +25,20 @@ export default function Header({ isScrolled }: HeaderProps) {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Info Bar */}
       <div className="hidden md:block bg-accent/90 backdrop-blur-md text-accent-foreground">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between text-sm">
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2 hover:text-accent-foreground/80 transition-colors cursor-pointer">
-              <Phone size={16} />
+        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between text-sm">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-1 hover:opacity-80">
+              <Phone size={14} />
               <span>+91 9908727027</span>
             </div>
-            <div className="flex items-center gap-2 hover:text-accent-foreground/80 transition-colors cursor-pointer">
-              <Mail size={16} />
+            <div className="flex items-center gap-1 hover:opacity-80">
+              <Mail size={14} />
               <span>aathidyam@gmail.com</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock size={16} />
-            <span>Today: 6:00 AM - 10:00 PM</span>
+          <div className="flex items-center gap-1 text-sm">
+            <Clock size={14} />
+            <span>Today: 11:00 AM - 11:00 PM</span>
           </div>
         </div>
       </div>
@@ -51,78 +51,72 @@ export default function Header({ isScrolled }: HeaderProps) {
             : "bg-background"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group cursor-pointer shrink-0">
-            <div className="w-12 h-12 bg-linear-to-t from-accent via-accent/90 to-accent/70 rounded-xl flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-              A
-            </div>
-
-            <div className="hidden sm:flex flex-col">
-              <span className="text-xl font-bold text-foreground tracking-tight">
-                Aathidyam
-              </span>
-              <span className="text-xs text-accent font-medium">
-                South Indian Cuisine
-              </span>
+        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+          {/* LOGO */}
+          <Link href="/" className="flex items-center group shrink-0">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logo.png"
+                alt="Aathidyam Restaurant Logo"
+                width={56}
+                height={56}
+                className="object-contain"
+                priority
+              />
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="px-5 py-2 text-foreground hover:text-accent transition-all duration-300 text-sm font-semibold relative group"
-              >
-                {item.label}
-                <span className="absolute bottom-1 left-0 w-0 h-1 bg-linear-to-t from-accent to-accent/60 transition-all duration-300 group-hover:w-full rounded-full" />
-              </Link>
-            ))}
-          </div>
+         {/* Desktop Nav */}
+<div className="hidden lg:flex items-center gap-4"> {/* Increased gap */}
+  {navItems.map((item) => (
+    <Link
+      key={item.label}
+      href={item.href}
+      className="px-5 py-2 text-foreground hover:text-accent transition-all duration-300 text-sm font-semibold relative group"
+    >
+      {item.label}
+      <span className="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-t from-accent to-accent/60 transition-all duration-300 group-hover:w-full rounded-full" />
+    </Link>
+  ))}
+</div>
+
 
           {/* Right Actions */}
-          <div className="flex items-center gap-4 md:gap-6">
-            {/* Search */}
+          <div className="flex items-center gap-3 md:gap-4">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="text-foreground hover:text-accent transition-all duration-300 hover:scale-110 p-2 rounded-lg hover:bg-accent/10"
-              aria-label="Search"
+              className="p-1.5 rounded-lg hover:bg-accent/10 hover:scale-110 transition"
             >
-              <Search size={20} />
+              <Search size={18} />
             </button>
 
-            {/* Cart */}
-            <button className="hidden sm:flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition-all duration-300 hover:scale-105 font-semibold group">
-              <ShoppingCart size={20} className="group-hover:rotate-12 transition-transform" />
-              <span className="text-sm">Cart</span>
+            <button className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition font-semibold text-sm">
+              <ShoppingCart size={18} />
+              <span>Cart</span>
             </button>
 
-            {/* Order Now */}
-            <button className="hidden sm:block px-6 py-2.5 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95">
+            <button className="hidden sm:block px-4 py-2 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-sm transition hover:shadow-lg hover:scale-105">
               Order Now
             </button>
 
-            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10"
-              aria-label="Toggle menu"
+              className="lg:hidden p-2 rounded-lg hover:bg-accent/10"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
         {/* Search Bar */}
         {searchOpen && (
-          <div className="bg-background/95 backdrop-blur-md px-6 py-4 border-t border-border animate-fade-in-down">
+          <div className="bg-background/95 backdrop-blur-md px-6 py-2 border-t border-border animate-fade-in-down">
             <div className="max-w-2xl mx-auto">
               <input
                 type="text"
                 placeholder="Search dishes, ingredients..."
-                className="w-full px-4 py-3 bg-input border-2 border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300"
+                className="w-full px-4 py-2.5 rounded-lg border-2 border-border bg-input focus:border-accent focus:ring-2 focus:ring-accent/30 text-sm"
                 autoFocus
               />
             </div>
@@ -131,25 +125,24 @@ export default function Header({ isScrolled }: HeaderProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-background border-t border-border p-4 space-y-2 animate-fade-in-down">
+          <div className="lg:hidden bg-background border-t border-border p-3 space-y-2 animate-fade-in-down">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="block px-4 py-3 text-foreground hover:text-accent hover:bg-accent/10 transition-all duration-300 rounded-lg font-medium"
                 onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2 rounded-lg hover:bg-accent/10 text-sm"
               >
                 {item.label}
               </Link>
             ))}
 
-            <div className="pt-3 border-t border-border space-y-2">
-              <button className="w-full px-4 py-3 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition-all duration-300 font-semibold flex items-center justify-center gap-2">
-                <ShoppingCart size={18} />
+            <div className="pt-2 border-t border-border space-y-2">
+              <button className="w-full py-2 bg-accent/10 rounded-lg flex justify-center gap-2 text-sm">
+                <ShoppingCart size={16} />
                 Cart
               </button>
-
-              <button className="w-full px-4 py-3 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold transition-all duration-300 hover:shadow-lg">
+              <button className="w-full py-2 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-sm">
                 Order Now
               </button>
             </div>

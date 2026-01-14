@@ -43,9 +43,9 @@ export default function ContactPage() {
                 </Info>
 
                 <Info icon={<Clock />} title="Opening Hours">
-                  Mon – Thu: 6:00 AM – 10:00 PM <br />
-                  Fri – Sat: 6:00 AM – 11:00 PM <br />
-                  Sunday: 7:00 AM – 10:00 PM
+                  sun – Mon: 11:00 AM – 11:00 PM <br />
+                  wed – Sat: 11:00 AM – 11:00 PM <br />
+                  
                 </Info>
               </div>
 

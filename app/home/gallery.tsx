@@ -1,37 +1,18 @@
 "use client"
-
-import { useState } from "react"
+import Image from "next/image"
+import React, { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 /* =======================
-   SLIDING GALLERY IMAGES
+   PHOTO GALLERY
 ======================= */
 const galleryImages = [
-  {
-    title: "Masala Dosa",
-    image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
-    alt: "Masala dosa",
-  },
-  {
-    title: "South Indian Thali",
-    image: "https://images.unsplash.com/photo-1626776876729-bab436d34b25",
-    alt: "South Indian thali",
-  },
-  {
-    title: "Idli Sambar",
-    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84",
-    alt: "Idli sambar",
-  },
-  {
-    title: "Biryani",
-    image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0",
-    alt: "Biryani",
-  },
-  {
-    title: "Restaurant Interior",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5",
-    alt: "Restaurant interior",
-  },
+  { image: "/biryani-rice-dish.jpg", title: "Biryani Rice Dish" },
+  { image: "/bread-halwa.jpg", title: "Bread Halwa" },
+  { image: "/gobimanchurian.jpg", title: "Gobi Manchurian" },
+  { image: "/Chicken-Noodles.jpg", title: "Chicken Noodles" },
+  { image: "/sweet-corn-soup.jpg", title: "Sweet Corn Soup" },
+  { image: "/mutton-curry.jpg", title: "Mutton Curry" },
 ]
 
 /* =======================
@@ -41,112 +22,192 @@ const specials = [
   {
     name: "Chicken Pulao",
     desc: "Aromatic basmati rice cooked with tender chicken and traditional spices.",
-    image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a",
-  },
-  {
-    name: "Non-Veg Mixed Pulao",
-    desc: "A royal mix of chicken, mutton, and prawns cooked to perfection.",
-    image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0",
+    image: "/chicken-fried-rice.jpg",
   },
   {
     name: "Mutton Pulao",
     desc: "Slow-cooked mutton infused with rich spices and fragrant rice.",
-    image: "https://images.unsplash.com/photo-1628294895950-9805252327bc",
+    image: "/mutton-pulao.jpg",
   },
   {
-    name: "Prawns Pulao",
-    desc: "Juicy prawns blended with mildly spiced long-grain rice.",
-    image: "https://images.unsplash.com/photo-1604908554169-03c4f1dbb5b1",
+    name: "Non-Veg Mixed Pulao",
+    desc: "Chicken, mutton & prawns cooked in royal spices.",
+    image: "/nonveg-mixed-pulao.jpg",
   },
   {
     name: "Fish Pulao",
-    desc: "Fresh fish cooked delicately with aromatic spices and rice.",
-    image: "https://images.unsplash.com/photo-1600628422019-6c5c1b2a63f4",
+    desc: "Fresh coastal fish layered with long-grain rice.",
+    image: "/fish-biryani.jfif",
+  },
+  {
+    name: "Prawns Pulao",
+    desc: "Juicy prawns tossed with fragrant basmati rice & mild spices.",
+    image: "/prawn-biryani.jpg",
   },
 ]
 
+/* =======================
+   COMPONENT
+======================= */
 export default function GalleryAndSpecials() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const next = () =>
-    setCurrentIndex((i) => (i + 1) % galleryImages.length)
-
-  const prev = () =>
-    setCurrentIndex((i) => (i - 1 + galleryImages.length) % galleryImages.length)
+  const [current, setCurrent] = useState(0)
 
   return (
-    <>
+    <div style={{ background: "#000", color: "#fff" }}>
       {/* =======================
-         PHOTO GALLERY (SLIDER)
-      ======================= */}
-      <section className="py-24 px-6 bg-card">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h2 className="text-4xl font-bold">Photo Gallery</h2>
-          <p className="text-muted-foreground mt-2">
-            A glimpse of our food & ambiance
-          </p>
-        </div>
+         STYLES
+      ======================== */}
+      <style>{`
+        .slide-left {
+          opacity: 0;
+          transform: translateX(-120px);
+          transition: all 0.9s ease;
+        }
+        .slide-right {
+          opacity: 0;
+          transform: translateX(120px);
+          transition: all 0.9s ease;
+        }
+        .slide-up {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: all 0.9s ease;
+        }
+        .show {
+          opacity: 1;
+          transform: translate(0);
+        }
+        .img-hover:hover {
+          transform: scale(1.08);
+          filter: brightness(1.15);
+        }
+      `}</style>
 
-        <div className="relative max-w-4xl mx-auto overflow-hidden rounded-xl shadow-lg">
-          <img
-            src={galleryImages[currentIndex].image}
-            alt={galleryImages[currentIndex].alt}
-            className="w-full h-80 object-cover"
+      {/* =======================
+         GALLERY
+      ======================== */}
+      <section style={{ padding: "80px 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: 36 }}>South Indian Gallery</h2>
+
+        <div style={{ position: "relative", maxWidth: 900, margin: "30px auto" }}>
+          <Image
+            src={galleryImages[current].image}
+            alt={galleryImages[current].title}
+            width={900}
+            height={480}
+            style={{
+              width: "100%",
+              height: 480,
+              objectFit: "cover",
+            }}
           />
 
           <button
-            onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 text-white p-2 rounded-full"
+            onClick={() =>
+              setCurrent((c) => (c - 1 + galleryImages.length) % galleryImages.length)
+            }
+            style={nav("left")}
           >
             <ChevronLeft />
           </button>
-
           <button
-            onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 text-white p-2 rounded-full"
+            onClick={() => setCurrent((c) => (c + 1) % galleryImages.length)}
+            style={nav("right")}
           >
             <ChevronRight />
           </button>
+
+          <p style={{ textAlign: "center", marginTop: 15, color: "#f39c12" }}>
+            {galleryImages[current].title}
+          </p>
         </div>
       </section>
 
       {/* =======================
          OUR SPECIALS
-      ======================= */}
-      <section className="py-24 px-6 bg-background">
-        <div className="max-w-6xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold">Our Special Pulao Dishes</h2>
-          <p className="text-muted-foreground mt-2">
-            Signature recipes loved by our guests
-          </p>
-        </div>
+      ======================== */}
+      <section style={{ padding: "80px 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: 36, marginBottom: 80 }}>
+          Our Special Pulao Dishes
+        </h2>
 
-        <div className="max-w-6xl mx-auto space-y-20">
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {specials.map((item, index) => (
-            <div
-              key={index}
-              className={`grid grid-cols-1 md:grid-cols-2 gap-10 items-center ${
-                index % 2 !== 0 ? "md:flex-row-reverse" : ""
-              }`}
-            >
-              {/* Image */}
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-72 object-cover rounded-xl shadow-md"
-              />
-
-              {/* Text */}
-              <div>
-                <h3 className="text-2xl font-bold mb-3">{item.name}</h3>
-                <p className="text-muted-foreground text-lg">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
+            <SpecialCard key={index} item={item} reverse={index % 2 !== 0} />
           ))}
         </div>
       </section>
-    </>
+    </div>
   )
+}
+
+/* =======================
+   SPECIAL CARD
+======================= */
+function SpecialCard({ item, reverse }: any) {
+  const ref = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show")
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className={reverse ? "slide-right" : "slide-left"}
+      style={{
+        display: "flex",
+        flexDirection: reverse ? "row-reverse" : "row",
+        gap: 50,
+        alignItems: "center",
+        marginBottom: 100,
+      }}
+    >
+      <Image
+        src={item.image}
+        alt={item.name}
+        className="img-hover"
+        width={550}
+        height={320}
+        style={{
+          width: "50%",
+          height: 320,
+          objectFit: "cover",
+          transition: "0.6s ease",
+        }}
+      />
+
+      <div className="slide-up show">
+        <h3 style={{ fontSize: 30, color: "#f39c12" }}>{item.name}</h3>
+        <p style={{ fontSize: 18, color: "#ccc", lineHeight: 1.7 }}>{item.desc}</p>
+      </div>
+    </div>
+  )
+}
+
+/* =======================
+   NAV BUTTON
+======================= */
+function nav(side: "left" | "right"): React.CSSProperties {
+  return {
+    position: "absolute",
+    top: "50%",
+    [side]: 10,
+    transform: "translateY(-50%)",
+    background: "rgba(0,0,0,0.7)",
+    border: "none",
+    padding: 12,
+    cursor: "pointer",
+    color: "#fff",
+  }
 }
