@@ -30,13 +30,13 @@ export default function Footer() {
               <div>
                 <span className="text-lg font-bold block">Aathidyam</span>
                 <span className="text-xs text-primary-foreground/70">
-                  South Indian Cuisine
+                 Biryanis & More
                 </span>
               </div>
             </div>
 
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Authentic South Indian dining experience where every dish
+              Authentic dining experience where every dish
               celebrates tradition, rich flavors, and heartfelt hospitality.
             </p>
           </div>

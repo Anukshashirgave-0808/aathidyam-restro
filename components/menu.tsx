@@ -72,9 +72,9 @@ export default function Menu() {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <p className="text-accent font-semibold text-sm tracking-widest mb-3 uppercase">Authentic Flavors</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Menu</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Delicious Menu</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Traditional South Indian dishes prepared with authentic recipes, finest ingredients, and culinary excellence
+            “A celebration of Indian and Chinese cuisines, featuring biryanis, pulaos, and soups made with authentic techniques and premium ingredients.”
           </p>
         </div>
 

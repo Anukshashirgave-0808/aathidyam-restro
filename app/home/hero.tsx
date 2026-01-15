@@ -12,42 +12,40 @@ export default function Hero() {
     setIsLoaded(true)
   }, [])
 
+  /* Same headline color style as Restaurant Gallery */
+  const headline =
+    "bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(255,165,0,0.4)]"
+
+  const subHeadline =
+    "bg-gradient-to-r from-orange-300 via-amber-300 to-orange-400 bg-clip-text text-transparent drop-shadow-[0_0_14px_rgba(255,165,0,0.35)]"
+
   return (
-    <section id="hero" className="relative w-full h-screen overflow-hidden pt-16">
-      
-      {/* Background SVG */}
-      <div
-        className={`absolute inset-0 z-0 transition-opacity duration-1000 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1"><stop offset="0%25" style="stop-color:%23D4A574;stop-opacity:0.18" /><stop offset="100%25" style="stop-color:%231a1a1a;stop-opacity:0.95" /></radialGradient></defs><rect width="1200" height="800" fill="%231a1a1a"/><circle cx="300" cy="200" r="400" fill="url(%23grad1)"/><circle cx="900" cy="500" r="350" fill="url(%23grad1)"/></svg>')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+    <section
+      id="hero"
+      className="relative w-full h-screen overflow-hidden pt-16"
+    >
+      {/* Background */}
+      <img
+        src="/Banana-leaf.png"
+        alt="Banana leaf background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50 z-10" />
-
-      {/* Hero Image */}
-      <img
-        src="/elegant-restaurant-fine-dining.jpg"
-        alt="Aathidyam Restaurant signature dish"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      />
+      <div className="absolute inset-0 bg-black/65 z-10" />
 
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
         <div className={isLoaded ? "animate-fade-in-up" : "opacity-0"}>
 
-          {/* MAIN TITLE */}
+          {/* TITLE */}
           <h1
-            className="
-              text-5xl md:text-7xl font-bold mb-4
-              tracking-widest text-white
-              drop-shadow-[0_8px_35px_rgba(255,255,255,0.25)]
-            "
+            className={`
+              text-5xl md:text-7xl
+              font-bold mb-4
+              tracking-widest
+              ${headline}
+            `}
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             AATHIDYAM
@@ -55,44 +53,59 @@ export default function Hero() {
 
           {/* TAGLINE */}
           <p
-            className="text-lg md:text-2xl text-gray-100 mb-3 font-light tracking-wide"
+            className={`
+              text-lg md:text-2xl
+              mb-3
+              font-light
+              tracking-wide
+              ${subHeadline}
+            `}
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            Exquisite South Indian Culinary Experience
+            A Celebration of Flavors & Hospitality
           </p>
 
           {/* DESCRIPTION */}
           <p
-            className="text-sm md:text-base text-gray-300 max-w-md mx-auto mb-10 leading-relaxed"
+            className="
+              text-sm md:text-base
+              max-w-md
+              mx-auto
+              mb-10
+              leading-relaxed
+              text-orange-200
+              drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]
+            "
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            Where tradition meets innovation.  
-            Every dish tells a story of passion and perfection.
+            Inspired by tradition and crafted with care — from aromatic biryanis
+            and pulaos to comforting soups and timeless favorites.
           </p>
 
           {/* BUTTON */}
           <button
             onClick={() => router.push("/menu")}
             className="
-              px-10 py-3
-              bg-accent hover:bg-accent/90
-              text-accent-foreground
-              font-semibold tracking-wide
-              rounded-none
+              px-6 py-2
+              bg-linear-to-r from-orange-400 to-amber-500
+              text-black
+              text-sm font-semibold tracking-wide
+              rounded-full
               transition-all duration-300
               hover:scale-105
-              hover:shadow-[0_12px_45px_rgba(243,156,18,0.45)]
+              hover:shadow-[0_8px_30px_rgba(255,165,0,0.45)]
             "
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
             Explore Menu
           </button>
+
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <ChevronDown className="text-white/60 w-6 h-6" />
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+        <ChevronDown className="text-white/70 w-6 h-6" />
       </div>
     </section>
   )

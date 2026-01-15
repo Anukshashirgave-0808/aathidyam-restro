@@ -3,7 +3,15 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
-import { Menu, X, Search, ShoppingCart, Phone, Clock, Mail } from "lucide-react"
+import {
+  Menu,
+  X,
+  Search,
+  ShoppingCart,
+  Phone,
+  Clock,
+  Mail,
+} from "lucide-react"
 
 interface HeaderProps {
   isScrolled: boolean
@@ -52,35 +60,38 @@ export default function Header({ isScrolled }: HeaderProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
-          {/* LOGO */}
+          {/* Logo */}
           <Link href="/" className="flex items-center group shrink-0">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden shadow-lg">
               <Image
                 src="/logo.png"
                 alt="Aathidyam Restaurant Logo"
                 width={56}
                 height={56}
-                className="object-contain"
+                className="
+                  object-contain
+                  scale-110
+                  transition-transform duration-300
+                  group-hover:scale-125
+                "
                 priority
               />
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-         {/* Desktop Nav */}
-<div className="hidden lg:flex items-center gap-4"> {/* Increased gap */}
-  {navItems.map((item) => (
-    <Link
-      key={item.label}
-      href={item.href}
-      className="px-5 py-2 text-foreground hover:text-accent transition-all duration-300 text-sm font-semibold relative group"
-    >
-      {item.label}
-      <span className="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-t from-accent to-accent/60 transition-all duration-300 group-hover:w-full rounded-full" />
-    </Link>
-  ))}
-</div>
-
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="px-5 py-2 text-foreground hover:text-accent transition-all duration-300 text-sm font-semibold relative group"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-t from-accent to-accent/60 transition-all duration-300 group-hover:w-full rounded-full" />
+              </Link>
+            ))}
+          </div>
 
           {/* Right Actions */}
           <div className="flex items-center gap-3 md:gap-4">

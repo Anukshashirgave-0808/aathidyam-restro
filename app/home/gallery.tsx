@@ -1,10 +1,11 @@
 "use client"
+
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 /* =======================
-   PHOTO GALLERY
+   PHOTO GALLERY DATA
 ======================= */
 const galleryImages = [
   { image: "/biryani-rice-dish.jpg", title: "Biryani Rice Dish" },
@@ -16,7 +17,7 @@ const galleryImages = [
 ]
 
 /* =======================
-   OUR SPECIALS
+   OUR SPECIALS DATA
 ======================= */
 const specials = [
   {
@@ -55,7 +56,7 @@ export default function GalleryAndSpecials() {
   return (
     <div style={{ background: "#000", color: "#fff" }}>
       {/* =======================
-         STYLES
+         ANIMATIONS
       ======================== */}
       <style>{`
         .slide-left {
@@ -84,12 +85,23 @@ export default function GalleryAndSpecials() {
       `}</style>
 
       {/* =======================
-         GALLERY
+         PHOTO GALLERY
       ======================== */}
-      <section style={{ padding: "80px 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: 36 }}>South Indian Gallery</h2>
+      <section style={{ padding: "90px 20px" }}>
+        <h2
+          className="text-center text-5xl md:text-6xl font-bold tracking-widest mb-12"
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 28px rgba(243,156,18,0.45)",
+          }}
+        >
+          Delicious Food Gallery
+        </h2>
 
-        <div style={{ position: "relative", maxWidth: 900, margin: "30px auto" }}>
+        <div style={{ position: "relative", maxWidth: 900, margin: "0 auto" }}>
           <Image
             src={galleryImages[current].image}
             alt={galleryImages[current].title}
@@ -99,6 +111,8 @@ export default function GalleryAndSpecials() {
               width: "100%",
               height: 480,
               objectFit: "cover",
+              borderRadius: 14,
+              boxShadow: "0 25px 60px rgba(243,156,18,0.25)",
             }}
           />
 
@@ -110,6 +124,7 @@ export default function GalleryAndSpecials() {
           >
             <ChevronLeft />
           </button>
+
           <button
             onClick={() => setCurrent((c) => (c + 1) % galleryImages.length)}
             style={nav("right")}
@@ -117,17 +132,103 @@ export default function GalleryAndSpecials() {
             <ChevronRight />
           </button>
 
-          <p style={{ textAlign: "center", marginTop: 15, color: "#f39c12" }}>
+          <p
+            style={{
+              textAlign: "center",
+              marginTop: 18,
+              fontSize: 18,
+              letterSpacing: "1px",
+              color: "#f39c12",
+              textShadow: "0 0 12px rgba(243,156,18,0.45)",
+            }}
+          >
             {galleryImages[current].title}
           </p>
         </div>
       </section>
 
       {/* =======================
+         TOP 10 RESTAURANT
+      ======================== */}
+      <section style={{ padding: "90px 20px" }}>
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 40,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ flex: "1 1 400px" }}>
+            <Image
+              src="/newtop10.jfif"
+              alt="Top 10 Restaurant"
+              width={500}
+              height={350}
+              style={{
+                width: "100%",
+                height: "auto",
+                objectFit: "cover",
+                borderRadius: 14,
+                boxShadow: "0 25px 60px rgba(243,156,18,0.25)",
+              }}
+            />
+          </div>
+
+          <div style={{ flex: "1 1 400px" }}>
+            <h2
+              className="text-4xl md:text-5xl font-bold tracking-widest mb-6"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "0 0 26px rgba(243,156,18,0.45)",
+              }}
+            >
+              Ranked Among the Top 10 Restaurants in the City!
+            </h2>
+
+            <p style={para}>
+              Our commitment to authentic flavors, fresh ingredients, and exceptional
+              service has earned us recognition among the city's top culinary destinations.
+            </p>
+
+            <p style={para}>
+              Signature dishes like Biryani, Pulao, and our Chef Specials showcase a perfect
+              blend of tradition and modern culinary artistry.
+            </p>
+
+            <p style={para}>
+              Recognized by food critics and featured in leading food guides, we continue to
+              set benchmarks in quality and taste.
+            </p>
+
+            <p style={para}>
+              Ideal for family dining, celebrations, and private events, we offer a warm
+              ambiance with unforgettable flavors.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* =======================
          OUR SPECIALS
       ======================== */}
-      <section style={{ padding: "80px 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: 36, marginBottom: 80 }}>
+      <section style={{ padding: "90px 20px" }}>
+        <h2
+          className="text-center text-5xl md:text-6xl font-bold tracking-widest mb-24"
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 30px rgba(243,156,18,0.5)",
+          }}
+        >
           Our Special Pulao Dishes
         </h2>
 
@@ -149,14 +250,9 @@ function SpecialCard({ item, reverse }: any) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show")
-        }
-      },
+      ([entry]) => entry.isIntersecting && ref.current?.classList.add("show"),
       { threshold: 0.3 }
     )
-
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
@@ -168,9 +264,9 @@ function SpecialCard({ item, reverse }: any) {
       style={{
         display: "flex",
         flexDirection: reverse ? "row-reverse" : "row",
-        gap: 50,
+        gap: 60,
         alignItems: "center",
-        marginBottom: 100,
+        marginBottom: 110,
       }}
     >
       <Image
@@ -183,31 +279,57 @@ function SpecialCard({ item, reverse }: any) {
           width: "50%",
           height: 320,
           objectFit: "cover",
+          borderRadius: 14,
           transition: "0.6s ease",
+          boxShadow: "0 22px 55px rgba(243,156,18,0.25)",
         }}
       />
 
       <div className="slide-up show">
-        <h3 style={{ fontSize: 30, color: "#f39c12" }}>{item.name}</h3>
-        <p style={{ fontSize: 18, color: "#ccc", lineHeight: 1.7 }}>{item.desc}</p>
+        <h3
+          style={{
+            fontSize: 34,
+            fontWeight: 700,
+            letterSpacing: "1.5px",
+            color: "#f39c12",
+            textShadow: "0 0 20px rgba(243,156,18,0.45)",
+            marginBottom: 14,
+          }}
+        >
+          {item.name}
+        </h3>
+
+        <p style={{ fontSize: 18, color: "#e0e0e0", lineHeight: 1.8, maxWidth: 420 }}>
+          {item.desc}
+        </p>
       </div>
     </div>
   )
 }
 
 /* =======================
-   NAV BUTTON
+   STYLES
 ======================= */
+const para = {
+  fontSize: 18,
+  color: "#fff",
+  lineHeight: 1.8,
+  maxWidth: 480,
+  marginBottom: 12,
+}
+
 function nav(side: "left" | "right"): React.CSSProperties {
   return {
     position: "absolute",
     top: "50%",
-    [side]: 10,
+    [side]: 14,
     transform: "translateY(-50%)",
-    background: "rgba(0,0,0,0.7)",
-    border: "none",
+    background: "rgba(0,0,0,0.6)",
+    border: "1px solid rgba(243,156,18,0.4)",
     padding: 12,
     cursor: "pointer",
-    color: "#fff",
+    color: "#f39c12",
+    borderRadius: "50%",
+    boxShadow: "0 0 20px rgba(243,156,18,0.4)",
   }
 }
