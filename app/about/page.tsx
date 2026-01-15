@@ -84,12 +84,7 @@ export default function AboutPage() {
                 Meet Our Owner
               </h2>
               <p className="text-gray-100 text-base md:text-lg leading-relaxed">
-                “With over two decades of experience in the hospitality industry,
-                our owner brings a deep passion for quality, tradition, and guest
-                satisfaction. Her vision is rooted in creating a warm dining
-                atmosphere where exceptional flavors, thoughtful service, and
-                attention to detail come together to deliver memorable
-                experiences for every guest.”
+                "Aathidyam is a small, home-style restaurant started in 2024 by Geetha Reddy, with a passion for serving fresh, tasty, and hygienic food. We focus on authentic flavors, quality ingredients, and warm hospitality to give every customer a satisfying dining experience."
               </p>
             </div>
           </div>
