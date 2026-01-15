@@ -18,9 +18,24 @@ export default function ContactPage() {
               <p className="text-accent text-sm tracking-widest uppercase mb-3">
                 Get in Touch
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Contact Us
-              </h2>
+              <h2
+  style={{
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "3rem",
+    fontWeight: 800,
+    letterSpacing: "0.25em",
+    textAlign: "center",
+    marginBottom: "2rem",
+    background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    color: "transparent",
+    textShadow: "0 0 30px rgba(243,156,18,0.55)",
+  }}
+>
+  Contact Us
+</h2>
+
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Reach out to us for reservations, catering, or any inquiries
               </p>

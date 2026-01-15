@@ -55,7 +55,24 @@ export default function ServicesPage() {
             <p className="text-accent font-semibold text-sm tracking-widest mb-3 uppercase">
               What We Offer
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Services</h2>
+           <h2
+  style={{
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "3rem",
+    fontWeight: 800,
+    letterSpacing: "0.25em",
+    textAlign: "center",
+    marginBottom: "2rem",
+    background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    color: "transparent",
+    textShadow: "0 0 28px rgba(243,156,18,0.55)",
+  }}
+>
+  Our Services
+</h2>
+
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Multiple ways to enjoy authentic South Indian cuisine tailored to your needs
             </p>

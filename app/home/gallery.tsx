@@ -52,6 +52,18 @@ const specials = [
 ======================= */
 export default function GalleryAndSpecials() {
   const [current, setCurrent] = useState(0)
+  const top10Ref = useRef<HTMLDivElement | null>(null)
+  const [top10Visible, setTop10Visible] = useState(false)
+
+  // IntersectionObserver for Top 10 animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setTop10Visible(entry.isIntersecting),
+      { threshold: 0.3 }
+    )
+    if (top10Ref.current) observer.observe(top10Ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div style={{ background: "#000", color: "#fff" }}>
@@ -81,6 +93,35 @@ export default function GalleryAndSpecials() {
         .img-hover:hover {
           transform: scale(1.08);
           filter: brightness(1.15);
+        }
+
+        /* =======================
+           TOP 10 ANIMATION
+        ======================== */
+        .fade-slide-left {
+          opacity: 0;
+          transform: translateX(-80px);
+          transition: all 1s ease-out;
+        }
+        .fade-slide-right {
+          opacity: 0;
+          transform: translateX(80px);
+          transition: all 1s ease-out;
+        }
+        .fade-slide-up {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 1s ease-out;
+        }
+        .fade-show {
+          opacity: 1;
+          transform: translate(0);
+        }
+
+        .top10-img:hover {
+          transform: scale(1.05);
+          filter: brightness(1.2);
+          transition: all 0.5s ease-in-out;
         }
       `}</style>
 
@@ -152,6 +193,7 @@ export default function GalleryAndSpecials() {
       ======================== */}
       <section style={{ padding: "90px 20px" }}>
         <div
+          ref={top10Ref}
           style={{
             maxWidth: 1100,
             margin: "0 auto",
@@ -162,7 +204,16 @@ export default function GalleryAndSpecials() {
             justifyContent: "center",
           }}
         >
-          <div style={{ flex: "1 1 400px" }}>
+          {/* IMAGE */}
+          <div
+            className={`top10-img ${top10Visible ? "fade-slide-left fade-show" : "fade-slide-left"}`}
+            style={{
+              flex: "1 1 400px",
+              borderRadius: 14,
+              overflow: "hidden",
+              boxShadow: "0 25px 60px rgba(243,156,18,0.25)",
+            }}
+          >
             <Image
               src="/newtop10.jfif"
               alt="Top 10 Restaurant"
@@ -173,12 +224,15 @@ export default function GalleryAndSpecials() {
                 height: "auto",
                 objectFit: "cover",
                 borderRadius: 14,
-                boxShadow: "0 25px 60px rgba(243,156,18,0.25)",
               }}
             />
           </div>
 
-          <div style={{ flex: "1 1 400px" }}>
+          {/* TEXT */}
+          <div
+            className={top10Visible ? "fade-slide-right fade-show" : "fade-slide-right"}
+            style={{ flex: "1 1 400px" }}
+          >
             <h2
               className="text-4xl md:text-5xl font-bold tracking-widest mb-6"
               style={{

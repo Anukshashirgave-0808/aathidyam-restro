@@ -33,7 +33,7 @@ export default function Header({ isScrolled }: HeaderProps) {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Info Bar */}
       <div className="hidden md:block bg-accent/90 backdrop-blur-md text-accent-foreground">
-        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between text-sm">
+        <div className="max-w-7xl mx-auto px-6 py-0.5 flex items-center justify-between text-sm">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-1 hover:opacity-80">
               <Phone size={14} />
@@ -58,16 +58,17 @@ export default function Header({ isScrolled }: HeaderProps) {
             ? "bg-background/95 backdrop-blur-lg shadow-lg border-b border-border"
             : "bg-background"
         }`}
+        style={{ minHeight: "50px" }} // ↓ further decreased navbar height
       >
-        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
-          {/* Logo */}
+        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between"> {/* ↓ decreased padding */}
+          {/* Logo with animation */}
           <Link href="/" className="flex items-center group shrink-0">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden shadow-lg">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden shadow-lg animate-logo-bounce">
               <Image
                 src="/logo.png"
                 alt="Aathidyam Restaurant Logo"
-                width={56}
-                height={56}
+                width={80}
+                height={80}
                 className="
                   object-contain
                   scale-110
@@ -85,7 +86,7 @@ export default function Header({ isScrolled }: HeaderProps) {
               <Link
                 key={item.label}
                 href={item.href}
-                className="px-5 py-2 text-foreground hover:text-accent transition-all duration-300 text-sm font-semibold relative group"
+                className="px-4 py-1 text-foreground hover:text-accent transition-all duration-300 text-base font-medium relative group" // ↓ decreased font size
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-t from-accent to-accent/60 transition-all duration-300 group-hover:w-full rounded-full" />
@@ -102,12 +103,12 @@ export default function Header({ isScrolled }: HeaderProps) {
               <Search size={18} />
             </button>
 
-            <button className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition font-semibold text-sm">
+            <button className="hidden sm:flex items-center gap-2 px-3 py-1 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition font-medium text-base">
               <ShoppingCart size={18} />
               <span>Cart</span>
             </button>
 
-            <button className="hidden sm:block px-4 py-2 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-sm transition hover:shadow-lg hover:scale-105">
+            <button className="hidden sm:block px-4 py-1.5 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-base transition hover:shadow-lg hover:scale-105">
               Order Now
             </button>
 
@@ -142,24 +143,35 @@ export default function Header({ isScrolled }: HeaderProps) {
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 rounded-lg hover:bg-accent/10 text-sm"
+                className="block px-4 py-2 rounded-lg hover:bg-accent/10 text-base font-medium"
               >
                 {item.label}
               </Link>
             ))}
 
             <div className="pt-2 border-t border-border space-y-2">
-              <button className="w-full py-2 bg-accent/10 rounded-lg flex justify-center gap-2 text-sm">
+              <button className="w-full py-2 bg-accent/10 rounded-lg flex justify-center gap-2 text-base font-medium">
                 <ShoppingCart size={16} />
                 Cart
               </button>
-              <button className="w-full py-2 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-sm">
+              <button className="w-full py-2 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-base">
                 Order Now
               </button>
             </div>
           </div>
         )}
       </nav>
+
+      {/* Logo Animation CSS */}
+      <style>{`
+        @keyframes logo-bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        .animate-logo-bounce {
+          animation: logo-bounce 3s ease-in-out infinite;
+        }
+      `}</style>
     </header>
   )
 }

@@ -72,7 +72,19 @@ export default function Menu() {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <p className="text-accent font-semibold text-sm tracking-widest mb-3 uppercase">Authentic Flavors</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Delicious Menu</h2>
+         <h2
+  className="text-center text-4xl md:text-5xl font-bold tracking-widest mb-8"
+  style={{
+    fontFamily: "'Playfair Display', serif",
+    background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textShadow: "0 0 26px rgba(243,156,18,0.5)",
+  }}
+>
+  Our Delicious Menu
+</h2>
+
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             “A celebration of Indian and Chinese cuisines, featuring biryanis, pulaos, and soups made with authentic techniques and premium ingredients.”
           </p>
