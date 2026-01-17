@@ -12,6 +12,7 @@ import {
   Clock,
   Mail,
 } from "lucide-react"
+import { useCart } from "@/components/CartContext"
 
 interface HeaderProps {
   isScrolled: boolean
@@ -20,6 +21,15 @@ interface HeaderProps {
 export default function Header({ isScrolled }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+
+  // ✅ ONLY cartItems — no isInitialized
+  const { cartItems } = useCart()
+
+  // ✅ total quantity (correct badge count)
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  )
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -58,10 +68,10 @@ export default function Header({ isScrolled }: HeaderProps) {
             ? "bg-background/95 backdrop-blur-lg shadow-lg border-b border-border"
             : "bg-background"
         }`}
-        style={{ minHeight: "50px" }} // ↓ further decreased navbar height
+        style={{ minHeight: "50px" }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between"> {/* ↓ decreased padding */}
-          {/* Logo with animation */}
+        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between">
+          {/* Logo */}
           <Link href="/" className="flex items-center group shrink-0">
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden shadow-lg animate-logo-bounce">
               <Image
@@ -69,12 +79,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                 alt="Aathidyam Restaurant Logo"
                 width={80}
                 height={80}
-                className="
-                  object-contain
-                  scale-110
-                  transition-transform duration-300
-                  group-hover:scale-125
-                "
+                className="object-contain scale-110 transition-transform duration-300 group-hover:scale-125"
                 priority
               />
             </div>
@@ -86,92 +91,30 @@ export default function Header({ isScrolled }: HeaderProps) {
               <Link
                 key={item.label}
                 href={item.href}
-                className="px-4 py-1 text-foreground hover:text-accent transition-all duration-300 text-base font-medium relative group" // ↓ decreased font size
+                className="px-4 py-1 text-foreground hover:text-accent transition-all duration-300 text-base font-medium relative group"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-t from-accent to-accent/60 transition-all duration-300 group-hover:w-full rounded-full" />
               </Link>
             ))}
-          </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-3 md:gap-4">
-            <button
-              onClick={() => setSearchOpen(!searchOpen)}
-              className="p-1.5 rounded-lg hover:bg-accent/10 hover:scale-110 transition"
+            {/* Cart */}
+            <Link
+              href="/cart"
+              className="flex items-center gap-2 px-3 py-1 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition font-medium text-base relative"
             >
-              <Search size={18} />
-            </button>
-
-            <button className="hidden sm:flex items-center gap-2 px-3 py-1 bg-accent/10 hover:bg-accent/20 text-accent rounded-lg transition font-medium text-base">
               <ShoppingCart size={18} />
               <span>Cart</span>
-            </button>
 
-            <button className="hidden sm:block px-4 py-1.5 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-base transition hover:shadow-lg hover:scale-105">
-              Order Now
-            </button>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-accent/10"
-            >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
-
-        {/* Search Bar */}
-        {searchOpen && (
-          <div className="bg-background/95 backdrop-blur-md px-6 py-2 border-t border-border animate-fade-in-down">
-            <div className="max-w-2xl mx-auto">
-              <input
-                type="text"
-                placeholder="Search dishes, ingredients..."
-                className="w-full px-4 py-2.5 rounded-lg border-2 border-border bg-input focus:border-accent focus:ring-2 focus:ring-accent/30 text-sm"
-                autoFocus
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-background border-t border-border p-3 space-y-2 animate-fade-in-down">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 rounded-lg hover:bg-accent/10 text-base font-medium"
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <div className="pt-2 border-t border-border space-y-2">
-              <button className="w-full py-2 bg-accent/10 rounded-lg flex justify-center gap-2 text-base font-medium">
-                <ShoppingCart size={16} />
-                Cart
-              </button>
-              <button className="w-full py-2 bg-linear-to-t from-accent to-accent/80 text-accent-foreground rounded-lg font-bold text-base">
-                Order Now
-              </button>
-            </div>
-          </div>
-        )}
       </nav>
-
-      {/* Logo Animation CSS */}
-      <style>{`
-        @keyframes logo-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
-        }
-        .animate-logo-bounce {
-          animation: logo-bounce 3s ease-in-out infinite;
-        }
-      `}</style>
     </header>
   )
 }
