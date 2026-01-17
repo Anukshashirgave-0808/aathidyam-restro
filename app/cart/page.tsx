@@ -1,8 +1,7 @@
 "use client"
 
 import { useCart, CartItemType } from "@/components/CartContext"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+
 import Link from "next/link"
 import { useEffect, useState, useReducer } from "react"
 import { useRouter } from "next/navigation"
@@ -44,7 +43,7 @@ export default function CartPage() {
 
   return (
     <>
-      <Header isScrolled={false} />
+     
 
       <main
         key={`${cartItems.length}-${totalPrice}`}
@@ -161,7 +160,7 @@ export default function CartPage() {
         )}
       </main>
 
-      <Footer />
+      
     </>
   )
 }

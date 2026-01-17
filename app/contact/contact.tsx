@@ -1,19 +1,18 @@
 "use client"
 
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 
 export default function ContactPage() {
   return (
     <>
-      <Header isScrolled={false} />
+      
 
       <main className="pt-28">
         <section className="py-24 px-6 bg-card">
           <div className="max-w-7xl mx-auto">
 
-            {/* Header */}
+            {/* HEADER */}
             <div className="text-center mb-16">
               <p className="text-accent text-sm tracking-widest uppercase mb-3">
                 Get in Touch
@@ -25,12 +24,10 @@ export default function ContactPage() {
                   fontSize: "3rem",
                   fontWeight: 800,
                   letterSpacing: "0.25em",
-                  textAlign: "center",
                   marginBottom: "2rem",
                   background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
-                  color: "transparent",
                   textShadow: "0 0 30px rgba(243,156,18,0.55)",
                 }}
               >
@@ -42,7 +39,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            {/* CENTERED INFO CARDS */}
+            {/* INFO CARDS */}
             <div className="flex justify-center">
               <div className="w-full max-w-xl space-y-6">
                 <Info icon={<MapPin />} title="Visit Us">
@@ -71,7 +68,7 @@ export default function ContactPage() {
   )
 }
 
-/* Info Card */
+/* INFO CARD */
 function Info({
   icon,
   title,

@@ -1,8 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
 import { Utensils, Users, Truck, Clock } from "lucide-react"
 
 const services = [
@@ -15,7 +12,8 @@ const services = [
   {
     icon: Truck,
     title: "Food Delivery",
-    description: "Enjoy our authentic dishes delivered fresh to your doorstep within the city.",
+    description:
+      "Enjoy our authentic dishes delivered fresh to your doorstep within the city.",
   },
   {
     icon: Users,
@@ -26,27 +24,14 @@ const services = [
   {
     icon: Clock,
     title: "Quick Bites",
-    description: "Grab authentic South Indian snacks and quick meals during your busy schedule.",
+    description:
+      "Grab authentic South Indian snacks and quick meals during your busy schedule.",
   },
 ]
 
 export default function ServicesPage() {
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
   return (
     <main className="overflow-hidden bg-background">
-      {/* Navbar */}
-      <Header isScrolled={isScrolled} />
-
       {/* Services Section */}
       <section id="services" className="py-24 md:py-32 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
@@ -55,23 +40,24 @@ export default function ServicesPage() {
             <p className="text-accent font-semibold text-sm tracking-widest mb-3 uppercase">
               What We Offer
             </p>
-           <h2
-  style={{
-    fontFamily: "'Playfair Display', serif",
-    fontSize: "3rem",
-    fontWeight: 800,
-    letterSpacing: "0.25em",
-    textAlign: "center",
-    marginBottom: "2rem",
-    background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    color: "transparent",
-    textShadow: "0 0 28px rgba(243,156,18,0.55)",
-  }}
->
-  Our Services
-</h2>
+
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: "3rem",
+                fontWeight: 800,
+                letterSpacing: "0.25em",
+                textAlign: "center",
+                marginBottom: "2rem",
+                background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+                textShadow: "0 0 28px rgba(243,156,18,0.55)",
+              }}
+            >
+              Our Services
+            </h2>
 
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Multiple ways to enjoy authentic South Indian cuisine tailored to your needs
@@ -82,6 +68,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => {
               const Icon = service.icon
+
               return (
                 <div
                   key={index}
@@ -93,19 +80,20 @@ export default function ServicesPage() {
                       <Icon className="text-accent w-8 h-8 group-hover:scale-110 transition-transform duration-300 group-hover:animate-bounce-gentle" />
                     </div>
                   </div>
+
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
               )
             })}
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
     </main>
   )
 }
