@@ -1,6 +1,13 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState, useCallback, useRef } from "react"
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+} from "react"
 
 export interface CartItemType {
   id: number
@@ -15,6 +22,7 @@ interface CartContextType {
   addToCart: (item: CartItemType) => void
   removeFromCart: (id: number) => void
   updateQuantity: (id: number, qty: number) => void
+  clearCart: () => void
   totalPrice: number
   isInitialized: boolean
 }
@@ -24,13 +32,11 @@ const CartContext = createContext<CartContextType | null>(null)
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItemType[]>([])
   const [isInitialized, setIsInitialized] = useState(false)
-  
-  // ✅ 1. Prevents Infinite Loops
-  // This ref keeps track of what is CURRENTLY in localStorage 
-  // so we don't trigger updates if nothing actually changed.
+
+  // ✅ Prevents Infinite Loops
   const cartStringRef = useRef<string>("")
 
-  /* ✅ 2. Initial Load (Only once on startup) */
+  /* ✅ 1. Initial Load */
   useEffect(() => {
     const stored = localStorage.getItem("cart")
     if (stored && stored !== "undefined") {
@@ -47,27 +53,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setIsInitialized(true)
   }, [])
 
-  /* ✅ 3. Save & Broadcast Signal */
+  /* ✅ 2. Save & Broadcast */
   useEffect(() => {
     if (!isInitialized) return
-    
+
     const newString = JSON.stringify(cartItems)
-    
-    // Only update localStorage and broadcast if the data is actually different
+
     if (newString !== cartStringRef.current) {
       localStorage.setItem("cart", newString)
       cartStringRef.current = newString
-      
-      // Tell other components (Header/Cart Page) to update NOW
       window.dispatchEvent(new Event("cart-updated"))
     }
   }, [cartItems, isInitialized])
 
-  /* ✅ 4. Sync Across Pages (The "Add More" Fix) */
+  /* ✅ 3. Cross-Tab & Page Sync */
   useEffect(() => {
     const handleSync = () => {
       const stored = localStorage.getItem("cart")
-      if (!stored || stored === cartStringRef.current) return 
+      if (!stored || stored === cartStringRef.current) return
 
       try {
         const parsed = JSON.parse(stored)
@@ -75,18 +78,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           cartStringRef.current = stored
           setCartItems(parsed)
         }
-      } catch (e) {}
+      } catch {}
     }
 
     window.addEventListener("storage", handleSync)
     window.addEventListener("cart-updated", handleSync)
+
     return () => {
       window.removeEventListener("storage", handleSync)
       window.removeEventListener("cart-updated", handleSync)
     }
   }, [])
 
-  /* ✅ 5. Functional Add To Cart (Preserves Old Items) */
+  /* ✅ 4. Add To Cart */
   const addToCart = useCallback((item: CartItemType) => {
     setCartItems((prev) => {
       const existing = prev.find((i) => i.id === item.id)
@@ -99,7 +103,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         )
       }
 
-      // Keep all previous items (...prev) and add the new one
       return [...prev, item]
     })
   }, [])
@@ -108,15 +111,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCartItems((prev) => prev.filter((i) => i.id !== id))
   }, [])
 
-  const updateQuantity = useCallback((id: number, qty: number) => {
-    if (qty <= 0) {
-      removeFromCart(id)
-      return
-    }
-    setCartItems((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, quantity: qty } : i))
-    )
-  }, [removeFromCart])
+  const updateQuantity = useCallback(
+    (id: number, qty: number) => {
+      if (qty <= 0) {
+        removeFromCart(id)
+        return
+      }
+      setCartItems((prev) =>
+        prev.map((i) => (i.id === id ? { ...i, quantity: qty } : i))
+      )
+    },
+    [removeFromCart]
+  )
+
+  /* ⭐ 5. CLEAR CART (ORDER SUCCESS) */
+  const clearCart = useCallback(() => {
+    setCartItems([])
+    localStorage.removeItem("cart")
+    cartStringRef.current = ""
+    window.dispatchEvent(new Event("cart-updated"))
+  }, [])
 
   const totalPrice = cartItems.reduce(
     (sum, i) => sum + i.price * i.quantity,
@@ -130,6 +144,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
         totalPrice,
         isInitialized,
       }}
@@ -141,6 +156,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 export function useCart() {
   const context = useContext(CartContext)
-  if (!context) throw new Error("useCart must be used within CartProvider")
+  if (!context) {
+    throw new Error("useCart must be used within CartProvider")
+  }
   return context
 }

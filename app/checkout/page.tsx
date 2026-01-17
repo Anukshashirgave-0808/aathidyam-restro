@@ -2,12 +2,13 @@
 
 import { useCart } from "@/components/CartContext"
 import { useState } from "react"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { CheckCircle } from "lucide-react"
 
 export default function CheckoutPage() {
-  const { cartItems, totalPrice } = useCart()
+  const { cartItems, totalPrice, clearCart } = useCart()
   const [showSuccess, setShowSuccess] = useState(false)
+  const router = useRouter()
 
   return (
     <>
@@ -140,12 +141,16 @@ export default function CheckoutPage() {
               Your delicious food is being prepared 🍽️
             </p>
 
-            <Link
-              href="/"
+            {/* ✅ CLEAR CART AND REDIRECT */}
+            <button
+              onClick={() => {
+                clearCart()
+                router.push("/")
+              }}
               className="inline-block px-8 py-3 bg-[#f4a24f] text-black font-bold rounded-full hover:shadow-lg transition"
             >
               Back to Home
-            </Link>
+            </button>
           </div>
         </div>
       )}
