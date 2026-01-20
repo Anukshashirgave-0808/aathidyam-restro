@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Star } from "lucide-react"
+import { Star, ExternalLink } from "lucide-react"
 
 const reviews = [
   {
@@ -103,6 +103,20 @@ export default function CustomerReviews() {
             />
           ))}
         </div>
+
+        {/* View More on Google */}
+        <div className="mt-12">
+          <a
+            href="https://www.google.com/search?sca_esv=540cd09fb70162eb&sxsrf=ANbL-n7z205mLVh_Zt6quCDTz_z4QJmSpA:1768884757584&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORNnbr2z9IBMjL00pM4kkLZP1SPLrjZbPDkKY40StzDWIz6YCPmNy2yc9xkEvw2LIUHvQDhpsgX93O41AVsdZYJSyR1zLfszLm10UMEp26gcqrZxGA%3D%3D&q=Aathidyam+Restaurant+Reviews&sa=X&ved=2ahUKEwi_iP-cqZmSAxVkRmwGHTrVKQ4Q0bkNegQIKxAH&biw=1280&bih=551&dpr=1.5&aic=0s"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-accent font-semibold hover:underline transition"
+          >
+            View more reviews on Google
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
+
       </div>
     </section>
   )

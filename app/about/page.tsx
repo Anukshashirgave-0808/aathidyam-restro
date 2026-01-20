@@ -111,16 +111,9 @@ export default function AboutPage() {
               AATHIDYAM Restaurant
             </h2>
             <p className="text-gray-100 text-lg leading-relaxed">
-              Aathidyam is a celebration of diverse flavors where tradition,
-              taste, and hospitality come together in a modern dining experience.
-              We bring together a wide range of cuisines—from aromatic biryanis
-              and flavorful pulaos to popular Chinese dishes and comforting
-              soups—crafted to satisfy every palate.
-              <br /><br />
-              Rooted in a passion for food and inspired by culinary diversity,
-              our kitchen blends classic techniques with contemporary
-              presentation. At Aathidyam, great food is more than just a
-              meal—it’s about comfort, connection, and moments worth revisiting.
+             Aathidyam is a celebration of diverse flavors where tradition, taste, and warm hospitality come together in a modern dining experience. We bring together a wide range of cuisines—from aromatic biryanis and flavorful pulaos to popular Chinese dishes and comforting soups—prepared using fresh vegetables and carefully selected meats to delight every palate.
+<br /><br />
+Rooted in a passion for food and inspired by culinary diversity, our kitchen blends classic techniques with contemporary presentation. At Aathidyam, every dish is freshly prepared with quality ingredients, because great food is more than just a meal—it’s about comfort, connection, and moments worth revisiting.
             </p>
           </div>
         </div>
@@ -134,20 +127,22 @@ export default function AboutPage() {
           <div className="animate-fade-in-right bg-linear-to-r from-accent/35 via-accent/20 to-accent/35 p-10 rounded-2xl border border-accent/50 shadow-xl hover:-translate-y-3 transition-all duration-700">
             <h3 className={`text-4xl font-bold mb-6 ${headline}`}>Our Vision</h3>
             <ul className="space-y-3 text-gray-100 text-lg">
-              <li>• Benchmark for South Indian cuisine</li>
-              <li>• Preserve authentic traditions</li>
-              <li>• Blend culture with modern dining</li>
-              <li>• Create unforgettable experiences</li>
+    <li>• Serve high-quality food with great taste</li>
+<li>• Celebrate authentic culinary traditions</li>
+<li>• Blend rich culture with modern dining</li>
+<li>• Make every visit truly memorable</li>
+
             </ul>
           </div>
 
           <div className="animate-fade-in-right bg-linear-to-r from-accent/35 via-accent/20 to-accent/35 p-10 rounded-2xl border border-accent/50 shadow-xl hover:-translate-y-3 transition-all duration-700">
             <h3 className={`text-4xl font-bold mb-6 ${headline}`}>Our Mission</h3>
             <ul className="space-y-3 text-gray-100 text-lg">
-              <li>• Serve authentic cuisine</li>
-              <li>• Deliver premium service</li>
-              <li>• Innovate respectfully</li>
-              <li>• Delight every guest</li>
+           <li>• Fresh ingredients, authentic flavors</li>
+<li>• Warm service with genuine care</li>
+<li>• Tradition with a modern touch</li>
+<li>• Moments worth remembering</li>
+
             </ul>
           </div>
         </div>

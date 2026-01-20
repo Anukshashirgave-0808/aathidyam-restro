@@ -243,7 +243,7 @@ export default function GalleryAndSpecials() {
                 textShadow: "0 0 26px rgba(243,156,18,0.45)",
               }}
             >
-              Ranked Among the Top 10 Restaurants in the City!
+              Ranked Among the Top 10 Restaurants in the "City of Destiny"
             </h2>
 
             <p style={para}>

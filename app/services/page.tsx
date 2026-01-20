@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Utensils, Users, Truck, Clock } from "lucide-react"
 
 const services = [
@@ -8,24 +9,28 @@ const services = [
     title: "Dine-In Service",
     description:
       "Experience fine dining in our elegant restaurant with impeccable service and ambiance.",
+    href: "/services/dine-in",
   },
   {
     icon: Truck,
     title: "Food Delivery",
     description:
       "Enjoy our authentic dishes delivered fresh to your doorstep within the city.",
+    href: "/services/food-delivery",
   },
   {
     icon: Users,
     title: "Catering",
     description:
       "Perfect for weddings, corporate events, and celebrations with customized menus.",
+    href: "/services/catering",
   },
   {
     icon: Clock,
     title: "Quick Bites",
     description:
       "Grab authentic South Indian snacks and quick meals during your busy schedule.",
+    href: "/services/quick-bites",
   },
 ]
 
@@ -35,6 +40,7 @@ export default function ServicesPage() {
       {/* Services Section */}
       <section id="services" className="py-24 md:py-32 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
+
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in-up">
             <p className="text-accent font-semibold text-sm tracking-widest mb-3 uppercase">
@@ -70,28 +76,41 @@ export default function ServicesPage() {
               const Icon = service.icon
 
               return (
-                <div
+                <Link
                   key={index}
-                  className="bg-card rounded-xl p-6 text-center group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 animate-fade-in-up border border-accent/20 hover:border-accent hover:glow-accent"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  href={service.href}
+                  className="block"
                 >
-                  <div className="flex justify-center mb-4">
-                    <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300 border border-accent/30">
-                      <Icon className="text-accent w-8 h-8 group-hover:scale-110 transition-transform duration-300 group-hover:animate-bounce-gentle" />
+                  <div
+                    className="bg-card rounded-xl p-6 text-center group hover:shadow-lg
+                               transition-all duration-300 transform hover:-translate-y-2
+                               animate-fade-in-up border border-accent/20
+                               hover:border-accent hover:glow-accent cursor-pointer"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="flex justify-center mb-4">
+                      <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center
+                                      justify-center group-hover:bg-accent/20
+                                      transition-all duration-300 border border-accent/30">
+                        <Icon className="text-accent w-8 h-8 group-hover:scale-110
+                                         transition-transform duration-300
+                                         group-hover:animate-bounce-gentle" />
+                      </div>
                     </div>
+
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {service.description}
+                    </p>
                   </div>
-
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+                </Link>
               )
             })}
           </div>
+
         </div>
       </section>
     </main>

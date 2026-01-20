@@ -4,6 +4,7 @@ import { useCart } from "@/components/CartContext"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { CheckCircle } from "lucide-react"
+import { createOrder } from "@/lib/order" // ✅ Added import
 
 export default function CheckoutPage() {
   const { cartItems, totalPrice, clearCart } = useCart()
@@ -26,7 +27,6 @@ export default function CheckoutPage() {
   const validate = () => {
     const newErrors: Record<string, string> = {}
 
-    // EMAIL (STRICT)
     if (!form.email.trim()) {
       newErrors.email = "Email is required"
     } else if (
@@ -37,46 +37,65 @@ export default function CheckoutPage() {
       newErrors.email = "Email should be like name@example.com"
     }
 
-    // NAME
-    if (!form.name.trim()) {
-      newErrors.name = "Name is required"
-    } else if (!/^[A-Za-z ]+$/.test(form.name)) {
+    if (!form.name.trim()) newErrors.name = "Name is required"
+    else if (!/^[A-Za-z ]+$/.test(form.name))
       newErrors.name = "Name should contain only letters"
-    }
 
-    // STREET
-    if (!form.street.trim()) {
-      newErrors.street = "Street address is required"
-    }
+    if (!form.street.trim()) newErrors.street = "Street address is required"
 
-    // CITY
-    if (!form.city.trim()) {
-      newErrors.city = "City is required"
-    } else if (!/^[A-Za-z ]+$/.test(form.city)) {
+    if (!form.city.trim()) newErrors.city = "City is required"
+    else if (!/^[A-Za-z ]+$/.test(form.city))
       newErrors.city = "City should contain only letters"
-    }
 
-    // PIN
-    if (!form.pin.trim()) {
-      newErrors.pin = "PIN code is required"
-    } else if (!/^\d{6}$/.test(form.pin)) {
-      newErrors.pin = "PIN code should be exactly 6 digits"
-    }
+    if (!form.pin.trim()) newErrors.pin = "PIN code is required"
+    else if (!/^\d{6}$/.test(form.pin)) newErrors.pin = "PIN code should be exactly 6 digits"
 
-    // PHONE
-    if (!form.phone.trim()) {
-      newErrors.phone = "Phone number is required"
-    } else if (!/^\d{10}$/.test(form.phone)) {
+    if (!form.phone.trim()) newErrors.phone = "Phone number is required"
+    else if (!/^\d{10}$/.test(form.phone))
       newErrors.phone = "Phone number should be exactly 10 digits"
-    }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
-  const handlePlaceOrder = () => {
+  // ✅ Updated: handlePlaceOrder to save order automatically
+  const handlePlaceOrder = async () => {
     if (!validate()) return
-    setShowSuccess(true)
+
+  const orderData = {
+  email: form.email,
+  name: form.name,
+  country: form.country,
+  street: form.street,
+  city: form.city,
+  state: form.state,
+
+  pincode: form.pin,
+  phone: form.phone,
+
+  paymentMethod: "Cash on Delivery",
+  isGuest: true,
+
+  items: cartItems.map(item =>
+    JSON.stringify({
+      id: item.id,
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+    })
+  ),
+}
+
+
+
+    try {
+      await createOrder(orderData) // Save order in Appwrite
+      clearCart() // Clear cart immediately
+      setShowSuccess(true) // Show success popup
+    } catch (error) {
+      console.error("Order failed:", error)
+      alert("Failed to place order. Please try again.")
+    }
   }
 
   return (
@@ -230,7 +249,7 @@ export default function CheckoutPage() {
             </div>
 
             <button
-              onClick={handlePlaceOrder}
+              onClick={handlePlaceOrder} // ✅ Call Appwrite logic
               className="w-full py-3 rounded-full font-black text-black bg-[#f4a24f] hover:shadow-[0_0_30px_rgba(244,162,79,0.5)] transition-all active:scale-95"
             >
               Place Order
@@ -270,10 +289,7 @@ export default function CheckoutPage() {
               Order Placed Successfully!
             </h2>
             <button
-              onClick={() => {
-                clearCart()
-                router.push("/")
-              }}
+              onClick={() => router.push("/")}
               className="px-8 py-3 bg-[#f4a24f] text-black font-bold rounded-full"
             >
               Back to Home

@@ -5,6 +5,7 @@ import "./globals.css"
 
 import { CartProvider } from "@/components/CartContext"
 import ClientLayout from "@/components/ClientLayout"
+import WhatsAppButton from "@/components/WhatsappButton" // ✅ ADD THIS
 
 const geist = Geist({ subsets: ["latin"] })
 
@@ -30,6 +31,10 @@ export default function RootLayout({
           <ClientLayout>
             {children}
           </ClientLayout>
+
+          {/* ✅ Floating WhatsApp Button (appears on all pages) */}
+          <WhatsAppButton />
+
           <Analytics />
         </CartProvider>
       </body>

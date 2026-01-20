@@ -46,7 +46,7 @@ export default function Footer() {
             <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
               <li><Link href="/menu" className="hover:text-accent">Menu</Link></li>
-              <li><Link href="/gallery" className="hover:text-accent">Gallery</Link></li>
+             
               <li><Link href="/about" className="hover:text-accent">About Us</Link></li>
               <li><Link href="/services" className="hover:text-accent">Services</Link></li>
               <li><Link href="/contact" className="hover:text-accent">Contact</Link></li>
@@ -54,15 +54,32 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
-            <h4 className="font-bold mb-4">Services</h4>
-            <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li><Link href="/services" className="hover:text-accent">Dine-In</Link></li>
-              <li><Link href="/services" className="hover:text-accent">Delivery</Link></li>
-              <li><Link href="/services" className="hover:text-accent">Catering</Link></li>
-              <li><Link href="/services" className="hover:text-accent">Events</Link></li>
-            </ul>
-          </div>
+         <div>
+  <h4 className="font-bold mb-4">Services</h4>
+  <ul className="space-y-2 text-sm text-primary-foreground/70">
+    <li>
+      <Link href="/services/dine-in" className="hover:text-accent">
+        Dine-In
+      </Link>
+    </li>
+    <li>
+      <Link href="/services/food-delivery" className="hover:text-accent">
+        Food Delivery
+      </Link>
+    </li>
+    <li>
+      <Link href="/services/catering" className="hover:text-accent">
+        Catering
+      </Link>
+    </li>
+    <li>
+      <Link href="/services/quick-bites" className="hover:text-accent">
+        Quick Bites
+      </Link>
+    </li>
+  </ul>
+</div>
+
 
           {/* Social */}
           <div>

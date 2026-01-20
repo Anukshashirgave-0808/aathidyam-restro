@@ -33,12 +33,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItemType[]>([])
   const [isInitialized, setIsInitialized] = useState(false)
 
-  // ✅ Prevents Infinite Loops
   const cartStringRef = useRef<string>("")
 
-  /* ✅ 1. Initial Load */
+  /* 1️⃣ Load from sessionStorage on init */
   useEffect(() => {
-    const stored = localStorage.getItem("cart")
+    const stored = sessionStorage.getItem("cart")
     if (stored && stored !== "undefined") {
       try {
         const parsed = JSON.parse(stored)
@@ -53,48 +52,40 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setIsInitialized(true)
   }, [])
 
-  /* ✅ 2. Save & Broadcast */
+  /* 2️⃣ Save to sessionStorage + trigger update event */
   useEffect(() => {
     if (!isInitialized) return
-
     const newString = JSON.stringify(cartItems)
-
     if (newString !== cartStringRef.current) {
-      localStorage.setItem("cart", newString)
+      sessionStorage.setItem("cart", newString)
       cartStringRef.current = newString
+      // dispatch custom event for immediate update
       window.dispatchEvent(new Event("cart-updated"))
     }
   }, [cartItems, isInitialized])
 
-  /* ✅ 3. Cross-Tab & Page Sync */
+  /* 3️⃣ Listen for cart-updated to immediately reflect changes */
   useEffect(() => {
-    const handleSync = () => {
-      const stored = localStorage.getItem("cart")
+    const handleCartUpdate = () => {
+      const stored = sessionStorage.getItem("cart")
       if (!stored || stored === cartStringRef.current) return
-
       try {
         const parsed = JSON.parse(stored)
         if (Array.isArray(parsed)) {
-          cartStringRef.current = stored
           setCartItems(parsed)
+          cartStringRef.current = stored
         }
       } catch {}
     }
 
-    window.addEventListener("storage", handleSync)
-    window.addEventListener("cart-updated", handleSync)
-
-    return () => {
-      window.removeEventListener("storage", handleSync)
-      window.removeEventListener("cart-updated", handleSync)
-    }
+    window.addEventListener("cart-updated", handleCartUpdate)
+    return () => window.removeEventListener("cart-updated", handleCartUpdate)
   }, [])
 
-  /* ✅ 4. Add To Cart */
+  /* 4️⃣ Add To Cart */
   const addToCart = useCallback((item: CartItemType) => {
     setCartItems((prev) => {
       const existing = prev.find((i) => i.id === item.id)
-
       if (existing) {
         return prev.map((i) =>
           i.id === item.id
@@ -102,15 +93,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             : i
         )
       }
-
       return [...prev, item]
     })
   }, [])
 
+  /* 5️⃣ Remove from cart */
   const removeFromCart = useCallback((id: number) => {
     setCartItems((prev) => prev.filter((i) => i.id !== id))
   }, [])
 
+  /* 6️⃣ Update quantity */
   const updateQuantity = useCallback(
     (id: number, qty: number) => {
       if (qty <= 0) {
@@ -124,10 +116,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     [removeFromCart]
   )
 
-  /* ⭐ 5. CLEAR CART (ORDER SUCCESS) */
+  /* 7️⃣ Clear Cart */
   const clearCart = useCallback(() => {
     setCartItems([])
-    localStorage.removeItem("cart")
+    sessionStorage.removeItem("cart")
     cartStringRef.current = ""
     window.dispatchEvent(new Event("cart-updated"))
   }, [])

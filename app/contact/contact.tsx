@@ -1,17 +1,16 @@
 "use client"
 
-
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 
 export default function ContactPage() {
   return (
     <>
-      
-
       <main className="pt-28">
-        <section className="py-24 px-6 bg-card">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-6 bg-card flex justify-center">
+          {/* BORDER WRAP */}
+        <div className="inline-block border-2 border-orange-500 p-10 bg-card">
 
+            
             {/* HEADER */}
             <div className="text-center mb-16">
               <p className="text-accent text-sm tracking-widest uppercase mb-3">
@@ -34,14 +33,14 @@ export default function ContactPage() {
                 Contact Us
               </h2>
 
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto">
                 Reach out to us for reservations, catering, or any inquiries
               </p>
             </div>
 
             {/* INFO CARDS */}
             <div className="flex justify-center">
-              <div className="w-full max-w-xl space-y-6">
+              <div className="w-full max-w-md space-y-6">
                 <Info icon={<MapPin />} title="Visit Us">
                   CBM Compound, Asilmetta, Visakhapatnam, Andhra Pradesh 530003
                 </Info>
@@ -55,8 +54,7 @@ export default function ContactPage() {
                 </Info>
 
                 <Info icon={<Clock />} title="Opening Hours">
-                  Sun – Mon: 11:00 AM – 11:00 PM <br />
-                  Wed – Sat: 11:00 AM – 11:00 PM
+                  Mon – Sun: 11:00 AM – 11:00 PM
                 </Info>
               </div>
             </div>
