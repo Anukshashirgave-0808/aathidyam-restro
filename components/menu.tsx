@@ -48,9 +48,9 @@ const menuItems: MenuItem[] = [
   { id: 31, name: "Chicken Roll", category: "Rolls", image: "/chicken-roll.jfif", price: 110 },
 
   // ================= COMBO BIRYANI =================
-  { id: 32, name: "Non Veg Biryani Combo (1)", category: "Combo Biryani", image: "/non-veg-combo1.png", price: 600 },
-  { id: 33, name: "Veg Combo", category: "Combo Biryani", image: "/veg-combo.webp", price: 520 },
-  { id: 34, name: "Non Veg Biryani Combo (2)", category: "Combo Biryani", image: "/non-veg-combo2.jpg", price: 700 },
+  { id: 32, name: "Non Veg Biryani Combo-1[1 chilli Chiken/Chicken Manchurian+1 Chicken Dum Biryani+1 Mutton Biryani]", category: "Combo Biryani", image: "/non-veg-combo1.png", price: 600 },
+  { id: 33, name: "Veg Combo [1 Veg Manchurian+1 Panner Dum Biryani+Special Veg Fried Rice]", category: "Combo Biryani", image: "/veg-combo.webp", price: 520 },
+  { id: 34, name: "Non Veg Biryani Combo-2[1 Chicken Lollipop/Wings+1 Chicken Fry piece Biryani+1Chicken Mughlai Biryani ]", category: "Combo Biryani", image: "/non-veg-combo2.jpg", price: 700 },
 
   // ================= FRIED RICE =================
   { id: 35, name: "Veg Fried Rice", category: "Fried Rice", subCategory: "Veg", image: "/vegetable-fried-rice.png", price: 150 },
@@ -131,58 +131,93 @@ export default function Menu() {
       <section id="menu" className="bg-black py-20 px-6">
 
         {/* ===== HEADER ===== */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <p
             className="uppercase tracking-[0.35em] mb-6 animate-fade-down"
             style={{
               fontSize: "0.9rem",
               color: "#f39c12",
-              textShadow: "0 0 12px rgba(243,156,18,0.6)",
             }}
           >
             AUTHENTIC FLAVORS
           </p>
+
           <h2
             style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "3rem",
               fontWeight: 800,
               letterSpacing: "0.25em",
-              textAlign: "center",
-              marginBottom: "2rem",
               background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              color: "transparent",
-              textShadow: "0 0 28px rgba(243,156,18,0.55)",
             }}
           >
             Our Delicious Menu
           </h2>
 
-          <p className="text-gray-400 max-w-4xl mx-auto leading-relaxed animate-fade">
+          <p className="text-gray-400 max-w-4xl mx-auto mt-6 leading-relaxed animate-fade">
             “A celebration of Indian and Chinese cuisines, featuring biryanis,
-            pulaos, and <br />
-            soups made with authentic techniques and premium ingredients.”
+            pulaos, and soups made with authentic techniques and premium ingredients.”
           </p>
         </div>
 
+        {/* ===== POPULAR DISHES SECTION ===== */}
+        <div className="mb-28">
+          <h3 className="popular-heading">
+            Our Popular Dishes
+          </h3>
+
+          <div className="banana-wrapper">
+            {/* LEFT LEAF */}
+            <div className="banana-leaf animate-leaf-left">
+              <h4>Biryanis & Rice</h4>
+              <ul>
+                <li>Chicken Dum Biryani</li>
+                <li>Chicken Fry Piece Biryani</li>
+                <li>Chicken Pulao</li>
+                <li>Non Veg Mixed Biryani</li>
+                <li>Mughlai Biryani</li>
+                <li>Bucket Biryani</li>
+                <li>Prawns Biryani</li>
+                <li>Cashew Paneer Biryani</li>
+                <li>Veg Fried Rice</li>
+                <li>Chicken Schezwan Fried Rice</li>
+              </ul>
+            </div>
+
+            {/* RIGHT LEAF */}
+            <div className="banana-leaf animate-leaf-right">
+              <h4>Starters & Curries</h4>
+              <ul>
+                <li>Apollo Fish Fry</li>
+                <li>Chicken Lollipops</li>
+                <li>Chilli Chicken</li>
+                <li>Pepper Chicken</li>
+                <li>Paneer 65</li>
+                <li>Chilli Mushroom</li>
+                <li>Veg Manchurian</li>
+                <li>Chilli Paneer</li>
+                <li>Chicken Curry</li>
+                <li>Fish Pulusu</li>
+                <li>Paneer Curry</li>
+                <li>Chapati</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* ===== CATEGORIES ===== */}
-        <div className="flex justify-center flex-wrap gap-5 mb-12">
-          {categories.map((cat) => (
+        <div className="flex justify-center flex-wrap gap-5 mb-14">
+          {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`
-                px-6 py-2 rounded-full
-                text-sm font-medium
-                transition-all duration-300
-                ${
-                  selectedCategory === cat
-                    ? "bg-[#f4a24f] text-black shadow-[0_0_18px_rgba(244,162,79,0.6)]"
-                    : "border border-[#f4a24f] text-[#f4a24f] hover:bg-[#f4a24f] hover:text-black hover:shadow-[0_0_14px_rgba(244,162,79,0.4)]"
-                }
-              `}
+              className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                selectedCategory === cat
+                  ? "bg-[#f4a24f] text-black shadow-[0_0_18px_rgba(244,162,79,0.6)]"
+                  : "border border-[#f4a24f] text-[#f4a24f] hover:bg-[#f4a24f] hover:text-black"
+              }`}
             >
               {cat}
             </button>
@@ -192,54 +227,123 @@ export default function Menu() {
         {/* ===== MENU GRID ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map(item => (
-            <div key={item.id} className="food-card">
-              <MenuCard item={item} />
-            </div>
+            <MenuCard key={item.id} item={item} />
           ))}
         </div>
 
-        {/* ===== ANIMATIONS ===== */}
+        {/* ===== STYLES ===== */}
         <style>{`
-          @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-down { animation: fadeDown 1s ease forwards; }
+/* ===== POPULAR HEADING ===== */
+.popular-heading {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 2.6rem;
+  letter-spacing: 0.35em;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(90deg,#f6c97a,#f4a24f,#f6c97a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-          @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-up { animation: fadeUp 1.1s ease forwards; }
+/* ===== BANANA LEAF WRAPPER ===== */
+.banana-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  max-width: 1050px;
+  margin: auto;
+}
 
-          @keyframes fade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-          .animate-fade { animation: fade 1.3s ease forwards; }
+@media (min-width: 768px) {
+  .banana-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
-          .food-card {
-            animation: cardIn 0.8s ease forwards;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-          }
+/* ===== BANANA LEAF CARD ===== */
+.banana-leaf {
+  padding: 3rem 2.5rem;
+  border-radius: 140px 140px 40px 40px;
+  background: linear-gradient(135deg, #0f3d1f, #1b6b3a, #0f3d1f);
+  border: 2px solid rgba(164,255,181,0.45);
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,0.4),
+    0 20px 60px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-          .food-card:hover {
-            transform: translateY(-10px) scale(1.04);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-          }
+.banana-leaf h4 {
+  color: #ffb96b; /* soft orange */
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  margin-bottom: 1.7rem;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
 
-          .food-card img {
-            transition: transform 0.6s ease;
-          }
+.banana-leaf:hover h4 {
+  color: #ffc87c;
+  transform: scale(1.05);
+}
 
-          .food-card:hover img {
-            transform: scale(1.12) rotate(1deg);
-          }
+.banana-leaf ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
-          @keyframes cardIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-          }
+.banana-leaf ul li {
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  color: #e9ffe9;
+  border-bottom: 1px dashed rgba(255,255,255,0.3);
+  transition: transform 0.35s ease, color 0.35s ease;
+
+  /* allow long menu names to wrap */
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.banana-leaf ul li:hover {
+  transform: translateX(12px);
+  color: #ffe9a6;
+}
+
+/* ===== ENTRY ANIMATIONS ===== */
+@keyframes leafFromLeft {
+  0% { opacity: 0; transform: translateX(-140px) rotate(-8deg); }
+  100% { opacity: 1; transform: translateX(0) rotate(0); }
+}
+
+@keyframes leafFromRight {
+  0% { opacity: 0; transform: translateX(140px) rotate(8deg); }
+  100% { opacity: 1; transform: translateX(0) rotate(0); }
+}
+
+/* ===== FLOATING AFTER ENTRY ===== */
+@keyframes leafFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ===== APPLY ANIMATIONS ===== */
+.animate-leaf-left {
+  animation:
+    leafFromLeft 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    leafFloat 6s ease-in-out infinite 1.6s;
+}
+
+.animate-leaf-right {
+  animation:
+    leafFromRight 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    leafFloat 6s ease-in-out infinite 1.6s;
+}
         `}</style>
       </section>
     </CartProvider>

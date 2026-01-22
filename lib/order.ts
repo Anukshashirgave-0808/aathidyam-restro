@@ -1,4 +1,4 @@
-import { databases } from "./appwrite"
+import { databases } from "./appwrite-server"
 import { ID } from "appwrite"
 
 export async function createOrder(orderData: any) {

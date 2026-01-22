@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { useCart, CartItemType } from "./CartContext"
+
 export interface MenuItem {
   id: number
   name: string
@@ -94,8 +95,9 @@ export default function MenuCard({ item }: MenuCardProps) {
 
       {/* INFO */}
       <div className="flex flex-col gap-1 text-sm">
+        {/* ✅ LONG NAME FIX */}
         <h3
-          className={`font-semibold text-[14px] truncate ${
+          className={`font-semibold text-[14px] wrap-break-words whitespace-normal ${
             isSelected ? "text-[#f4a24f]" : "text-white"
           }`}
         >

@@ -17,6 +17,12 @@ export interface CartItemType {
   image: string
 }
 
+interface OrderDetails {
+  customerName: string
+  phone: string
+  address: string
+}
+
 interface CartContextType {
   cartItems: CartItemType[]
   addToCart: (item: CartItemType) => void
@@ -25,6 +31,9 @@ interface CartContextType {
   clearCart: () => void
   totalPrice: number
   isInitialized: boolean
+
+  // 🔵 Added: placeOrder for ordering system
+  placeOrder: (details: OrderDetails) => Promise<void>
 }
 
 const CartContext = createContext<CartContextType | null>(null)
@@ -59,7 +68,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (newString !== cartStringRef.current) {
       sessionStorage.setItem("cart", newString)
       cartStringRef.current = newString
-      // dispatch custom event for immediate update
       window.dispatchEvent(new Event("cart-updated"))
     }
   }, [cartItems, isInitialized])
@@ -77,7 +85,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
       } catch {}
     }
-
     window.addEventListener("cart-updated", handleCartUpdate)
     return () => window.removeEventListener("cart-updated", handleCartUpdate)
   }, [])
@@ -88,9 +95,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const existing = prev.find((i) => i.id === item.id)
       if (existing) {
         return prev.map((i) =>
-          i.id === item.id
-            ? { ...i, quantity: i.quantity + item.quantity }
-            : i
+          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
         )
       }
       return [...prev, item]
@@ -129,6 +134,30 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     0
   )
 
+  /* 🔵 8️⃣ Place Order */
+  const placeOrder = useCallback(
+    async (details: OrderDetails) => {
+      if (cartItems.length === 0) return
+
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cartItems,
+          total: totalPrice,
+          ...details,
+        }),
+      })
+
+      if (!res.ok) {
+        throw new Error("Order failed")
+      }
+
+      clearCart()
+    },
+    [cartItems, totalPrice, clearCart]
+  )
+
   return (
     <CartContext.Provider
       value={{
@@ -139,6 +168,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         totalPrice,
         isInitialized,
+        placeOrder,
       }}
     >
       {children}
