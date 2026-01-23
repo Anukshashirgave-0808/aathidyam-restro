@@ -1,12 +1,12 @@
-import { Client, Databases } from "appwrite"
+import { Client, Databases, Storage, Users } from "node-appwrite";
 
-const client = new Client()
+export async function createAdminClient() {
+  const client = new Client()
+    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!) 
+    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
+    .setKey(process.env.APPWRITE_API_KEY!); // Use the SECRET key here
 
-client
-  .setEndpoint("https://nyc.cloud.appwrite.io/v1") // Your Appwrite endpoint
-  .setProject("696dc849001dcfd3e246") // Needed even for API key
-  
-
-export const databases = new Databases(client)
-
-
+  return {
+    get databases() { return new Databases(client); },
+  };
+}
