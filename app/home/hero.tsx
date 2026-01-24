@@ -12,7 +12,6 @@ export default function Hero() {
     setIsLoaded(true)
   }, [])
 
-  /* Same headline color style as Restaurant Gallery */
   const headline =
     "bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(255,165,0,0.4)]"
 
@@ -22,34 +21,43 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen overflow-hidden pt-16"
+      className="relative w-full h-screen overflow-x-hidden"
     >
       {/* Background */}
       <img
         src="/Banana-leaf.png"
         alt="Banana leaf background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="
+          absolute inset-x-0 bottom-0
+          w-full h-[calc(100%-4rem)]
+          object-cover
+          z-0
+        "
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/65 z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-[calc(100%-4rem)] bg-black/65 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
-        <div className={isLoaded ? "animate-fade-in-up" : "opacity-0"}>
+      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6 pt-16 overflow-visible">
+        <div className={isLoaded ? "animate-fade-in-up overflow-visible" : "opacity-0"}>
 
-          {/* TITLE */}
-          <h1
-            className={`
-              text-5xl md:text-7xl
-              font-bold mb-4
-              tracking-widest
-              ${headline}
-            `}
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            AATHIDYAM
-          </h1>
+          {/* TITLE WRAPPER (IMPORTANT) */}
+          <div className="overflow-visible">
+            <h1
+              className={`
+                text-5xl md:text-7xl
+                font-bold
+                mb-6
+                leading-[1.35]
+                py-3
+                ${headline}
+              `}
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              ఆతిథ్యం
+            </h1>
+          </div>
 
           {/* TAGLINE */}
           <p
@@ -62,7 +70,7 @@ export default function Hero() {
             `}
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            A Celebration of Flavors & Hospitality
+            రుచులు & అతిథి సత్కారానికి ఒక వేడుక
           </p>
 
           {/* DESCRIPTION */}
@@ -78,8 +86,9 @@ export default function Hero() {
             "
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            Inspired by tradition and crafted with care — from aromatic biryanis
-            and pulaos to comforting soups and timeless favorites.
+            సంప్రదాయాల నుండి ప్రేరణ పొంది, శ్రద్ధతో తయారు చేసిన వంటకాలు —
+            సువాసనగల బిర్యానీలు, పులావులు, మనసుకు నచ్చే సూప్‌లు
+            మరియు కాలాతీతమైన ఇష్టమైన రుచులు.
           </p>
 
           {/* BUTTON */}

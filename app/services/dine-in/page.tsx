@@ -67,11 +67,11 @@ export default function DineInPage() {
             </div>
 
             {/* IMAGES */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {[
-                { src: "/dinein-1.jfif", alt: "Restaurant Interior" },
-                { src: "/dinein-2.jfif", alt: "Birthday Party Setup" },
-                { src: "/dinein-3.jfif", alt: "Family Get Together" },
+                { src: "/dinein4.webp", alt: "Restaurant Interior" },
+                { src: "/aathidyam5.webp", alt: "Birthday Party Setup" },
+                { src: "/aathidyam2.webp", alt: "Family Get Together" },
               ].map((img, i) => (
                 <div
                   key={i}

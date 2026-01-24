@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState, useMemo } from "react"
 import { useRouter } from "next/navigation"
+import { Star } from "lucide-react"
 import { useCart, CartItemType } from "./CartContext"
 
 export interface MenuItem {
@@ -11,7 +12,7 @@ export interface MenuItem {
   category: string
   image: string
   price: number
-  subCategory?: "Veg" | "Non-Veg" // optional
+  subCategory?: "Veg" | "Non-Veg"
 }
 
 interface MenuCardProps {
@@ -29,13 +30,47 @@ export default function MenuCard({ item }: MenuCardProps) {
     [cartItems, item.id]
   )
 
-  // ✅ AUTO VEG / NON-VEG DETECTION
+  // AUTO VEG / NON-VEG DETECTION
   const isNonVeg = useMemo(() => {
     const nonVegKeywords = ["chicken", "mutton", "fish", "prawn", "egg"]
-    return nonVegKeywords.some(keyword =>
+    return nonVegKeywords.some((keyword) =>
       item.name.toLowerCase().includes(keyword)
     )
   }, [item.name])
+
+  // ⭐ FEATURED ITEMS (STAR)
+  const featuredItems = [
+    "chicken dum biryani",
+    "chicken fry piece biryani",
+    "chicken pulao",
+    "non veg mixed biryani",
+    "mughlai biryani",
+    "bucket biryani",
+    "prawns biryani",
+    "cashew paneer biryani",
+    "veg fried rice",
+    "chicken schezwan fried rice",
+    "apollo fish fry",
+    "chicken lollipops",
+    "chilli chicken",
+    "pepper chicken",
+    "paneer 65",
+    "chilli mushroom",
+    "veg manchurian",
+    "chilli paneer",
+    "chicken curry",
+    "fish pulusu",
+    "paneer curry",
+    "chapati",
+  ]
+
+  const showStar = useMemo(
+    () =>
+      featuredItems.some((name) =>
+        item.name.toLowerCase().includes(name)
+      ),
+    [item.name]
+  )
 
   const increment = () => setQuantity((q) => q + 1)
   const decrement = () => setQuantity((q) => (q > 1 ? q - 1 : q))
@@ -67,7 +102,7 @@ export default function MenuCard({ item }: MenuCardProps) {
       }`}
     >
       {/* IMAGE */}
-      <div className="relative overflow-hidden rounded-lg mb-2 w-full aspect-square bg-black">
+      <div className="relative overflow-hidden rounded-lg mb-2 w-full aspect-3/2 bg-black">
         <Image
           src={item.image}
           alt={item.name}
@@ -77,17 +112,24 @@ export default function MenuCard({ item }: MenuCardProps) {
           }`}
         />
 
-        {/* ✅ AUTO VEG / NON-VEG BADGE */}
+        {/* VEG / NON-VEG BADGE */}
         <div
           className={`absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full text-white shadow-lg
-            ${isNonVeg ? "bg-red-600" : "bg-green-600"}`}
+            ${isNonVeg ? "bg-[#7a3e1d]" : "bg-green-600"}`}
         >
           {isNonVeg ? "Non-Veg" : "Veg"}
         </div>
 
+        {/* ⭐ GOLDEN STAR BADGE */}
+        {showStar && (
+          <div className="absolute top-2 right-2 bg-linear-to-br from-yellow-400 to-yellow-600 p-1.5 rounded-full shadow-lg z-20">
+            <Star size={14} className="text-black fill-black" />
+          </div>
+        )}
+
         {/* IN CART BADGE */}
         {isSelected && (
-          <div className="absolute top-2 right-2 bg-[#f4a24f] text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg z-10">
+          <div className="absolute bottom-2 right-2 bg-[#f4a24f] text-black text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg z-10">
             IN CART
           </div>
         )}
@@ -95,7 +137,6 @@ export default function MenuCard({ item }: MenuCardProps) {
 
       {/* INFO */}
       <div className="flex flex-col gap-1 text-sm">
-        {/* ✅ LONG NAME FIX */}
         <h3
           className={`font-semibold text-[14px] wrap-break-words whitespace-normal ${
             isSelected ? "text-[#f4a24f]" : "text-white"
@@ -104,7 +145,6 @@ export default function MenuCard({ item }: MenuCardProps) {
           {item.name}
         </h3>
 
-        {/* PRICE + QTY */}
         <div className="flex items-center justify-between mt-1">
           <span className="font-bold text-[#f4a24f] text-[13px]">
             ₹{item.price}
@@ -117,7 +157,6 @@ export default function MenuCard({ item }: MenuCardProps) {
           </div>
         </div>
 
-        {/* ADD TO CART */}
         <button
           onClick={handleAddToCart}
           disabled={added}

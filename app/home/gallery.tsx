@@ -243,7 +243,7 @@ export default function GalleryAndSpecials() {
                 textShadow: "0 0 26px rgba(243,156,18,0.45)",
               }}
             >
-              Ranked Among the Top 10 Restaurants in the "City of Destiny"
+              Ranked Among the Top 10 Restaurants in the "City of Destiny-Visakhapatnam"
             </h2>
 
             <p style={para}>
@@ -283,7 +283,7 @@ export default function GalleryAndSpecials() {
             textShadow: "0 0 30px rgba(243,156,18,0.5)",
           }}
         >
-          Our Special Pulao Dishes
+          Our Special Dishes
         </h2>
 
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>

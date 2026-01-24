@@ -8,9 +8,8 @@ export default function ContactPage() {
       <main className="pt-28">
         <section className="py-24 px-6 bg-card flex justify-center">
           {/* BORDER WRAP */}
-        <div className="inline-block border-2 border-orange-500 p-10 bg-card">
+          <div className="inline-block border-2 border-orange-500 p-10 bg-card">
 
-            
             {/* HEADER */}
             <div className="text-center mb-16">
               <p className="text-accent text-sm tracking-widest uppercase mb-3">
@@ -40,22 +39,38 @@ export default function ContactPage() {
 
             {/* INFO CARDS */}
             <div className="flex justify-center">
-              <div className="w-full max-w-md space-y-6">
-                <Info icon={<MapPin />} title="Visit Us">
-                  CBM Compound, Asilmetta, Visakhapatnam, Andhra Pradesh 530003
-                </Info>
+              <div className="w-full max-w-md space-y-8"> {/* Increased spacing */}
 
-                <Info icon={<Phone />} title="Call Us">
-                  +91 9908727027
-                </Info>
+                {/* Visit Us - Google Maps */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=CBM+Compound,+Asilmetta,+Visakhapatnam,+Andhra+Pradesh+530003"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Info icon={<MapPin />} title="Visit Us">
+                    CBM Compound, Asilmetta, Visakhapatnam, Andhra Pradesh 530003
+                  </Info>
+                </a>
 
-                <Info icon={<Mail />} title="Email Us">
-                  aathidyam@gmail.com
-                </Info>
+                {/* Call Us - Phone */}
+                <a href="tel:+919908727027">
+                  <Info icon={<Phone />} title="Call Us">
+                    +91 9908727027
+                  </Info>
+                </a>
 
+                {/* Email Us */}
+                <a href="mailto:aathidyam@gmail.com">
+                  <Info icon={<Mail />} title="Email Us">
+                    aathidyam@gmail.com
+                  </Info>
+                </a>
+
+                {/* Opening Hours - no link */}
                 <Info icon={<Clock />} title="Opening Hours">
                   Mon – Sun: 11:00 AM – 11:00 PM
                 </Info>
+
               </div>
             </div>
 
@@ -77,7 +92,8 @@ function Info({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex gap-5 p-5 rounded-xl border border-accent/20 hover:border-accent transition">
+    <div className="flex gap-5 p-5 rounded-xl border border-accent/20 hover:border-accent transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      {/* Added hover scale + shadow */}
       <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-accent/10 text-accent">
         {icon}
       </div>
