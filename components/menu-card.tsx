@@ -119,13 +119,13 @@ export default function MenuCard({ item }: MenuCardProps) {
         >
           {isNonVeg ? "Non-Veg" : "Veg"}
         </div>
+{/* ⭐ PURPLE STAR BADGE */}
+{showStar && (
+  <div className="absolute top-2 right-2 bg-linear-to-br from-purple-400 to-purple-600 p-1.5 rounded-full shadow-lg z-20">
+    <Star size={14} className="text-white fill-white" />
+  </div>
+)}
 
-        {/* ⭐ GOLDEN STAR BADGE */}
-        {showStar && (
-          <div className="absolute top-2 right-2 bg-linear-to-br from-yellow-400 to-yellow-600 p-1.5 rounded-full shadow-lg z-20">
-            <Star size={14} className="text-black fill-black" />
-          </div>
-        )}
 
         {/* IN CART BADGE */}
         {isSelected && (

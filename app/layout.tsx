@@ -10,7 +10,7 @@ import WhatsAppButton from "@/components/WhatsappButton" // ✅ ADD THIS
 const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Aathidyam Restaurant | Authentic South Indian Cuisine",
+  title: "Aathidyam Restaurant | Authentic Cuisine",
   description:
     "Experience authentic South Indian culinary excellence at Aathidyam Restaurant.",
   icons: {

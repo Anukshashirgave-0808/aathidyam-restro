@@ -163,63 +163,66 @@ export default function Menu() {
         </div>
 
         {/* ===== POPULAR DISHES SECTION ===== */}
-        <div className="mb-28">
-  <h3 className="popular-heading">
-    Our Popular Dishes
-  </h3>
+     <div className="banana-wrapper flex flex-wrap justify-between gap-4">
 
-  <div className="banana-wrapper flex flex-wrap justify-between gap-4">
-    {/* LEFT LEAF */}
-    <div className="banana-leaf animate-leaf-left">
-      <h4>Biryanis & Rice</h4>
-      <ul className="space-y-2">
-        {[
-          { name: "Chicken Dum Biryani", emoji: "🍗" },
-          { name: "Chicken Fry Piece Biryani", emoji: "🍖" },
-          { name: "Chicken Pulao", emoji: "🍛" },
-          { name: "Non Veg Mixed Biryani", emoji: "🥘" },
-          { name: "Mughlai Biryani", emoji: "🍚" },
-          { name: "Bucket Biryani", emoji: "🪣" },
-          { name: "Prawns Biryani", emoji: "🦐" },
-          { name: "Cashew Paneer Biryani", emoji: "🧀" },
-          { name: "Veg Fried Rice", emoji: "🥦" },
-          { name: "Chicken Schezwan Fried Rice", emoji: "🌶️" },
-        ].map((dish) => (
-          <li key={dish.name} className="flex items-center gap-2">
-            <span className="text-xl">{dish.emoji}</span>
-            {dish.name}
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    {/* RIGHT LEAF */}
-    <div className="banana-leaf animate-leaf-right">
-      <h4>Starters & Curries</h4>
-      <ul className="space-y-2">
-        {[
-          { name: "Apollo Fish Fry", emoji: "🐟" },
-          { name: "Chicken Lollipops", emoji: "🍗" },
-          { name: "Chilli Chicken", emoji: "🌶️" },
-          { name: "Pepper Chicken", emoji: "🌶️" },
-          { name: "Paneer 65", emoji: "🧀" },
-          { name: "Chilli Mushroom", emoji: "🍄" },
-          { name: "Veg Manchurian", emoji: "🥦" },
-          { name: "Chilli Paneer", emoji: "🌶️🧀" },
-          { name: "Chicken Curry", emoji: "🍛" },
-          { name: "Fish Pulusu", emoji: "🐠" },
-          { name: "Paneer Curry", emoji: "🧀" },
-          { name: "Chapati", emoji: "🥙" },
-        ].map((dish) => (
-          <li key={dish.name} className="flex items-center gap-2">
-            <span className="text-xl">{dish.emoji}</span>
-            {dish.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+  {/* LEFT LEAF */}
+  <div className="banana-leaf animate-leaf-left">
+    <h4>Biryanis & Rice</h4>
+    <ul className="space-y-2">
+      {[
+        "Chicken Dum Biryani",
+        "Chicken Fry Piece Biryani",
+        "Chicken Pulao",
+        "Non Veg Mixed Biryani",
+        "Mughlai Biryani",
+        "Bucket Biryani",
+        "Prawns Biryani",
+        "Cashew Paneer Biryani",
+        "Veg Fried Rice",
+        "Chicken Schezwan Fried Rice",
+      ].map((dish) => (
+        <li key={dish} className="flex items-center gap-2">
+          {/* ⭐ Purple Star (inline – no layout shift) */}
+          <span className="inline-flex items-center justify-center w-5 h-5 bg-linear-to-br from-purple-500 to-purple-700 rounded-full shadow">
+            <span className="text-white text-xs leading-none">★</span>
+          </span>
+          {dish}
+        </li>
+      ))}
+    </ul>
   </div>
+
+  {/* RIGHT LEAF */}
+  <div className="banana-leaf animate-leaf-right">
+    <h4>Starters & Curries</h4>
+    <ul className="space-y-2">
+      {[
+        "Apollo Fish Fry",
+        "Chicken Lollipops",
+        "Chilli Chicken",
+        "Pepper Chicken",
+        "Paneer 65",
+        "Chilli Mushroom",
+        "Veg Manchurian",
+        "Chilli Paneer",
+        "Chicken Curry",
+        "Fish Pulusu",
+        "Paneer Curry",
+        "Chapati",
+      ].map((dish) => (
+        <li key={dish} className="flex items-center gap-2">
+          {/* ⭐ Purple Star (inline – no layout shift) */}
+          <span className="inline-flex items-center justify-center w-5 h-5 bg-linear-to-br from-purple-500 to-purple-700 rounded-full shadow">
+            <span className="text-white text-xs leading-none">★</span>
+          </span>
+          {dish}
+        </li>
+      ))}
+    </ul>
+  </div>
+
 </div>
+
 
 
         {/* ===== CATEGORIES ===== */}
