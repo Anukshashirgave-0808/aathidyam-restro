@@ -215,7 +215,7 @@ export default function GalleryAndSpecials() {
             }}
           >
             <Image
-              src="/newtop10.jfif"
+              src="/bestrestro.png"
               alt="Top 10 Restaurant"
               width={500}
               height={350}
@@ -234,17 +234,18 @@ export default function GalleryAndSpecials() {
             style={{ flex: "1 1 400px" }}
           >
             <h2
-              className="text-4xl md:text-5xl font-bold tracking-widest mb-6"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "0 0 26px rgba(243,156,18,0.45)",
-              }}
-            >
-              Ranked Among the Top 10 Restaurants in the "City of Destiny-Visakhapatnam"
-            </h2>
+  className="text-3xl md:text-4xl font-bold tracking-widest mb-6"
+  style={{
+    fontFamily: "'Playfair Display', serif",
+    background: "linear-gradient(90deg,#f6c97a,#f39c12,#f6c97a)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textShadow: "0 0 26px rgba(243,156,18,0.45)",
+  }}
+>
+  Ranked Among the Top 10 Restaurants in the "City of Destiny-Visakhapatnam"
+</h2>
+
 
             <p style={para}>
               Our commitment to authentic flavors, fresh ingredients, and exceptional
@@ -253,17 +254,12 @@ export default function GalleryAndSpecials() {
 
             <p style={para}>
               Signature dishes like Biryani, Pulao, and our Chef Specials showcase a perfect
-              blend of tradition and modern culinary artistry.
-            </p>
-
-            <p style={para}>
-              Recognized by food critics and featured in leading food guides, we continue to
-              set benchmarks in quality and taste.
-            </p>
-
-            <p style={para}>
-              Ideal for family dining, celebrations, and private events, we offer a warm
+              blend of tradition and modern culinary artistry. Ideal for family dining, celebrations, and private events, we offer a warm
               ambiance with unforgettable flavors.
+            </p>
+
+            <p style={para}>
+              
             </p>
           </div>
         </div>

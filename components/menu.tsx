@@ -51,7 +51,7 @@ const menuItems: MenuItem[] = [
   { id: 32, name: "Non Veg Biryani Combo-1[1 chilli Chiken/Chicken Manchurian+1 Chicken Dum Biryani+1 Mutton Biryani]", category: "Combo Biryani", image: "/non-veg-combo1.png", price: 600 },
   { id: 33, name: "Veg Combo [1 Veg Manchurian+1 Panner Dum Biryani+Special Veg Fried Rice]", category: "Combo Biryani", image: "/veg-combo.webp", price: 520 },
   { id: 34, name: "Non Veg Biryani Combo-2[1 Chicken Lollipop/Wings+1 Chicken Fry piece Biryani+1Chicken Mughlai Biryani ]", category: "Combo Biryani", image: "/non-veg-combo2.jpg", price: 700 },
-
+  { id: 76, name: "Bucket Biryani [Serves 3 people]", category: "Combo Biryani", image: "/bucket-biryani.jfif", price: 600 },
   // ================= FRIED RICE =================
   { id: 35, name: "Veg Fried Rice", category: "Fried Rice", subCategory: "Veg", image: "/vegetable-fried-rice.png", price: 150 },
   { id: 36, name: "Paneer Fried Rice", category: "Fried Rice", subCategory: "Veg", image: "/paneer-fried-rice.jpg", price: 180 },
@@ -72,7 +72,7 @@ const menuItems: MenuItem[] = [
   { id: 48, name: "Mutton Biryani", category: "Biryani", image: "/flavorful-mutton-biryani.png", price: 380 },
   { id: 49, name: "Fish Biryani", category: "Biryani", image: "/fish-biryani.jpg", price: 260 },
   { id: 50, name: "Prawns Biryani", category: "Biryani", image: "/prawn-biryani.jpg", price: 280 },
-
+  
   // ================= PULAO =================
   { id: 51, name: "Veg Pulao", category: "Pulao", image: "/veg-pulao.jfif", price: 220 },
   { id: 52, name: "Paneer Pulao", category: "Pulao", image: "/panner-pulao.jfif", price: 240 },

@@ -94,12 +94,12 @@ export default function MenuCard({ item }: MenuCardProps) {
 
   return (
     <div
-      className={`group flex flex-col rounded-xl border transition-all duration-500 p-2 hover:-translate-y-2 
-      ${
-        isSelected
-          ? "border-[#f4a24f] bg-[#f4a24f]/5 shadow-[0_0_20px_rgba(244,162,79,0.1)]"
-          : "border-white/10 bg-black/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
-      }`}
+      className={`group flex flex-col rounded-xl border transition-all duration-500 p-2 hover:-translate-y-2 scale-90
+        ${
+          isSelected
+            ? "border-[#f4a24f] bg-[#f4a24f]/5 shadow-[0_0_20px_rgba(244,162,79,0.1)]"
+            : "border-white/10 bg-black/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
+        }`}
     >
       {/* IMAGE */}
       <div className="relative overflow-hidden rounded-lg mb-2 w-full aspect-3/2 bg-black">
@@ -119,13 +119,13 @@ export default function MenuCard({ item }: MenuCardProps) {
         >
           {isNonVeg ? "Non-Veg" : "Veg"}
         </div>
-{/* ⭐ PURPLE STAR BADGE */}
-{showStar && (
-  <div className="absolute top-2 right-2 bg-linear-to-br from-purple-400 to-purple-600 p-1.5 rounded-full shadow-lg z-20">
-    <Star size={14} className="text-white fill-white" />
-  </div>
-)}
 
+        {/* ⭐ PURPLE STAR BADGE */}
+        {showStar && (
+          <div className="absolute top-2 right-2 bg-linear-to-br from-purple-400 to-purple-600 p-1.5 rounded-full shadow-lg z-20">
+            <Star size={14} className="text-white fill-white" />
+          </div>
+        )}
 
         {/* IN CART BADGE */}
         {isSelected && (
